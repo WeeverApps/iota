@@ -1,0 +1,231 @@
+Really Simple Semantic Syndication (R3S) Specifications
+=======================================================
+
+Version:		0.8
+Author: 		Robert Gerald Porter
+Copyright: 		2011 Weever Apps Inc.
+
+
+Background: 
+
+R3S was born of the necessity for a standard by which a web application could transmit any public data via a protocol that is lightweight, widely accessible, and easily transformed by a third-party application. While developing Weever, I discovered that RSS was far too limited and slow in many ways.
+
+For instance, RSS requires XML parsing -- this is both slow and inconsitent in Javascript. RSS is often limited to only the latest data, and that data tends to be inconsistent across implementations: some giving full feed with complete content, some only giving introductory text. Ultimately, if we were to have something elegant and efficient, something else was needed.
+
+What follows is our first implementation of the specification Weever uses to translate website data into a mobile HTML5 web app. We know that some day, maybe soon, websites may also need to relay data to other types of applications in an Internet of Things.
+
+In our current implementations, most of the object space remains unused. In particular, the semanic "relationships" property is one we are quite keen to use some day for giving context to an object.
+
+Specifications:
+===============
+
+Channel
+=======
+
+An R3S channel only delivers metadata related to a particular query. An R3S reader would then re-request details about a particular object once it is determined by the user what they wish to explore.
+
+thisPage
+lastPage
+count
+type [Types: htmlContent,media,events,profiles,tableData,inputRequests,mixed]
+sort
+language
+copyright
+license
+generator
+publisher
+rating
+url
+description
+name
+r3sVersion
+relationships
+items [see items(summary)]
+
+R3S Channel Definitions
+=======================
+
+thisPage: 		Pagination, which page of data is being requested (default: 1)
+
+lastPage: 		Pagination, last possible page (IE if 967 records, 100 per page, the lastPage would be 9)
+
+count: 			How many items are being returned
+
+type: 			What kind of content is being returned (html, media, etc)
+
+sort: 			How the items are sorted (alphabetic, most recent, etc)
+
+language: 		Localization of the content (en-us, etc)
+
+copyright: 		Copyright statement for the content
+
+license: 		Any licensing pertaining to the content (Creative Commons, GPL, etc)
+
+generator: 		Component or library outputting this content [IE, "R3S 0.8 for Joomla 1.5, release version 0.8.1"]
+
+publisher: 		Name of website owner/company
+
+rating: 		Like RSS rating attribute, generally used for flagging mature or offensive content
+
+url: 			Site URL
+
+description: 	Summary description of content being delivered
+
+name: 			Name of feed source (blog name, gallery name, etc)
+
+r3sVersion: 	Specification version being used
+
+items: 			(Obj) a sub-object containing the content items (see Items (Summary))
+
+relationships: 	(Obj) a sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
+
+
+Items (Summary)
+===============
+
+type [htmlContent,media,event,profile,tableData,inputRequest]
+description
+name
+datetime {published,modified,start,end}
+image {mobile / full}
+tags
+url
+uuid
+author
+publisher
+relationships
+
+
+R3S Items Definitions
+=====================
+
+type: 			Type of content being delivered: html, media, etc
+
+description: 	Summary of content
+
+name: 			Name of content (article title, file name, etc)
+
+datetime: 		(Obj) published, modified, [start/end for event items)]
+
+image: 			(Obj) URL for mobile(optional) and normal resolution
+
+tags: 			(Array) taxonomical tags
+
+url: 			URL of item
+
+uuid: 			Unique Universal Identifier (should be unique; urls could change whereas this would remain the same)
+
+author: 		Name of the content author
+
+publisher: 		Name of (original) publisher, used if aggregated content
+
+
+Details Feeds
+=============
+
+An R3S details feed delivers full access to a specific content object.
+
+
+details::htmlContent
+====================
+
+htmlContent is any content which is in HTML and cannot be classified as an event, multimedia, a profile, tabulated data, or an input form.
+
+html
+author
+publisher
+license
+tags
+url
+uuid
+datetime {pub,mod}
+generator
+copyright
+rating
+r3sVersion
+relationships
+
+
+R3S htmlContent Definitions
+============================
+
+html: 			String containing HTML content
+
+author: 		Name of author
+
+publisher: 		Name of publisher
+
+license: 		Any license attached to content
+
+copyright: 		Any copyrights attached to content
+
+url: 			URL of content
+
+uuid: 			Unique Universal Identifier (should be unique; urls could change whereas this would remain the same)
+
+datetime: 		(Obj) published, modified
+
+generator: 		Component or library outputting this content
+
+r3sVersion: 	Specification version being used
+
+
+details::event
+==============
+
+event is any content which relies upon a context specific time(s) -- may have a specific time, or a beginning and an end. This can include scheduled gatherings, logged activities, and comments or discussions.
+
+htmlDescription
+startDatetime
+endDatetime
+publishDatetime
+modifedDatetime
+author
+publisher
+tags
+license
+url
+generator
+copyright
+rating
+r3sVersion
+relationships
+
+details::media
+==============
+
+media is any content which is primarily non-textual, be it graphical, video, multimedia (games), audio, or other media.
+
+mimeType
+published
+modified
+author
+publisher
+tags
+license
+url
+copyright
+rating
+r3sVersion
+relationships
+
+details::profile
+================
+
+profile is any content which relates to some specific entity - a person, a product, a property, etc. 
+
+(specs forthcoming)
+
+details::tableData
+==================
+
+tableData is any content which is formatted in tables, such as statistical data.
+
+(specs forthcoming) 
+
+details::inputRequests
+======================
+
+inputRequests is any content which requests information from the end-user.
+
+(specs forthcoming)
