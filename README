@@ -5,7 +5,6 @@ Version:		0.8
 Author: 		Robert Gerald Porter
 Copyright: 		2011 Weever Apps Inc.
 
-
 Background: 
 
 R3S was born of the necessity for a standard by which a web application could transmit any public data via a protocol that is lightweight, widely accessible, and easily transformed by a third-party application. While developing Weever, I discovered that RSS was far too limited and slow in many ways.
