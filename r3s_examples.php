@@ -36,7 +36,7 @@ class R3SChannelMap {
 	public 		$rating;
 	public 		$url;
 	public 		$description;
-	public  	$geo;
+	public		$geo			= array();
 	public 		$name;
 	public 		$r3sVersion		= "0.8";
 	public 		$relationships;
@@ -55,7 +55,7 @@ class R3SItemMap {
 	public 		$datetime		= array("published"=>"","modified"=>"","start"=>"","end"=>"");
 	public 		$image			= array("mobile"=>"","full"=>"");
 	public 		$tags			= array();
-	public 		$geo;
+	public		$geo			= array();
 	public 		$url;
 	public 		$uuid;
 	public 		$author;
@@ -74,7 +74,7 @@ class R3SHtmlContentDetailsMap {
 	public 		$datetime		= array("published"=>"","modified"=>"");
 	public 		$image			= array("mobile"=>"","full"=>"");
 	public 		$tags			= array();
-	public		$geo;
+	public		$geo			= array();
 	public 		$url;
 	public 		$uuid;
 	public 		$author;
