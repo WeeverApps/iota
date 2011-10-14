@@ -3,7 +3,7 @@
 *	R3S Specification PHP Example
 *
 *	Author:				Robert Gerald Porter
-*	Version:			0.8
+*	Version:			0.8.1
 *	License: 			GPL v3.0
 *
 *	This extension is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ class R3SChannelMap {
 	public 		$rating;
 	public 		$url;
 	public 		$description;
+	public		$geo			= array();
 	public 		$name;
 	public 		$r3sVersion		= "0.8";
 	public 		$relationships;
@@ -54,6 +55,7 @@ class R3SItemMap {
 	public 		$datetime		= array("published"=>"","modified"=>"","start"=>"","end"=>"");
 	public 		$image			= array("mobile"=>"","full"=>"");
 	public 		$tags			= array();
+	public		$geo			= array();
 	public 		$url;
 	public 		$uuid;
 	public 		$author;
@@ -72,6 +74,7 @@ class R3SHtmlContentDetailsMap {
 	public 		$datetime		= array("published"=>"","modified"=>"");
 	public 		$image			= array("mobile"=>"","full"=>"");
 	public 		$tags			= array();
+	public		$geo			= array();
 	public 		$url;
 	public 		$uuid;
 	public 		$author;

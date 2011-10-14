@@ -1,9 +1,14 @@
 Really Simple Semantic Syndication (R3S) Draft Specifications
 =============================================================
 
-Version:		0.8
+Version:		0.8.1
 Author: 		Robert Gerald Porter
 Copyright: 		2011 Weever Apps Inc.
+
+Revision History:
+
+0.8: 	Initial Publication
+0.8.1:	Addition of Geolocational Data to main feed specs
 
 Background: 
 
@@ -36,6 +41,7 @@ publisher
 rating
 url
 description
+geo
 name
 r3sVersion
 relationships
@@ -70,6 +76,8 @@ url: 			Site URL
 
 description: 	Summary description of content being delivered
 
+geo:			(Obj) Geolocational data related to channel
+
 name: 			Name of feed source (blog name, gallery name, etc)
 
 r3sVersion: 	Specification version being used
@@ -84,6 +92,7 @@ Items (Summary)
 
 type [htmlContent,media,event,profile,tableData,inputRequest]
 description
+geo
 name
 datetime {published,modified,start,end}
 image {mobile / full}
@@ -101,6 +110,8 @@ R3S Items Definitions
 type: 			Type of content being delivered: html, media, etc
 
 description: 	Summary of content
+
+geo:			(Obj) Geolocational data related to item
 
 name: 			Name of content (article title, file name, etc)
 
@@ -135,6 +146,7 @@ author
 publisher
 license
 tags
+geo
 url
 uuid
 datetime {pub,mod}
@@ -155,6 +167,10 @@ author: 		Name of author
 publisher: 		Name of publisher
 
 license: 		Any license attached to content
+
+tags:			(Obj) Taxinomical tags
+
+geo:			(Obj) Geolocational data
 
 copyright: 		Any copyrights attached to content
 
@@ -182,6 +198,7 @@ modifedDatetime
 author
 publisher
 tags
+geo
 license
 url
 generator
@@ -201,6 +218,7 @@ modified
 author
 publisher
 tags
+geo
 license
 url
 copyright
