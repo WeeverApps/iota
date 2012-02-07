@@ -1,7 +1,7 @@
 Really Simple Semantic Syndication (R3S) Draft Specifications
 =============================================================
 
-Version:		0.8.1
+Version:		0.9
 Author: 		Robert Gerald Porter
 Copyright: 		2011 Weever Apps Inc.
 
@@ -9,6 +9,7 @@ Revision History:
 
 0.8: 	Initial Publication
 0.8.1:	Addition of Geolocational Data to main feed specs
+0.9:	Addition of profile specs, subcategorizations through channel content-type.
 
 Background: 
 
@@ -31,7 +32,7 @@ An R3S channel only delivers metadata related to a particular query. An R3S read
 thisPage
 lastPage
 count
-type [Types: htmlContent,media,events,profiles,tableData,inputRequests,mixed]
+type [Types: channel,htmlContent,media,events,profiles,tableData,inputRequests,mixed]
 sort
 language
 copyright
@@ -90,7 +91,7 @@ relationships: 	(Obj) a sub-object containing other context-relevant semantical 
 Items (Summary)
 ===============
 
-type [htmlContent,media,event,profile,tableData,inputRequest]
+type [channel,htmlContent,media,event,profile,tableData,inputRequest]
 description
 geo
 name
@@ -101,7 +102,8 @@ url
 uuid
 author
 publisher
-relationships
+properties {}
+relationships {}
 
 
 R3S Items Definitions
@@ -231,7 +233,29 @@ details::profile
 
 profile is any content which relates to some specific entity - a person, a product, a property, etc. 
 
-(specs forthcoming)
+name
+properties
+images [x]
+id
+description
+tags
+geo
+url
+generator
+copyright
+rating
+r3sVersion
+relationships
+
+properties::product
+===================
+sku
+weight
+dimensions {height, width, length}
+price {tax, discounts, currency, amount, id}
+quantity {stock}
+condition
+manufacturer {}
 
 details::tableData
 ==================
