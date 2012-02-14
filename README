@@ -257,6 +257,22 @@ quantity {stock}
 condition
 manufacturer {}
 
+details::channel
+================
+
+name
+images [x]
+id
+description
+tags
+geo
+url
+generator
+copyright
+rating
+r3sVesion
+relationships
+
 details::tableData
 ==================
 
