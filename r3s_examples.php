@@ -3,7 +3,7 @@
 *	R3S Specification PHP Example
 *
 *	Author:				Robert Gerald Porter
-*	Version:			0.8.1
+*	Version:			0.9.1
 *	License: 			GPL v3.0
 *
 *	This extension is free software: you can redistribute it and/or modify

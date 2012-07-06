@@ -1,7 +1,7 @@
 Really Simple Semantic Syndication (R3S) Draft Specifications
 =============================================================
 
-Version:		0.9
+Version:		0.9.1
 Author: 		Robert Gerald Porter
 Copyright: 		2011 Weever Apps Inc.
 
@@ -10,6 +10,7 @@ Revision History:
 0.8: 	Initial Publication
 0.8.1:	Addition of Geolocational Data to main feed specs
 0.9:	Addition of profile specs, subcategorizations through channel content-type.
+0.9.1:	Addition of fullContent feeds
 
 Background: 
 
@@ -96,15 +97,14 @@ description
 geo
 name
 datetime {published,modified,start,end}
-image {mobile / full}
+images
 tags
 url
 uuid
 author
 publisher
-properties {}
 relationships {}
-
+details {}
 
 R3S Items Definitions
 =====================
@@ -119,7 +119,7 @@ name: 			Name of content (article title, file name, etc)
 
 datetime: 		(Obj) published, modified, [start/end for event items)]
 
-image: 			(Obj) URL for mobile(optional) and normal resolution
+images: 		(Array) URLs to relevant images
 
 tags: 			(Array) taxonomical tags
 
@@ -131,9 +131,13 @@ author: 		Name of the content author
 
 publisher: 		Name of (original) publisher, used if aggregated content
 
+details:		(Obj) Full details content of item data, should only be in feed when requested or data footprint is low
 
-Details Feeds
-=============
+relationships:	(Obj) A sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
+
+
+Details-only Feeds
+==================
 
 An R3S details feed delivers full access to a specific content object.
 
@@ -144,10 +148,12 @@ details::htmlContent
 htmlContent is any content which is in HTML and cannot be classified as an event, multimedia, a profile, tabulated data, or an input form.
 
 html
+name
 author
 publisher
 license
 tags
+images
 geo
 url
 uuid
@@ -164,6 +170,8 @@ R3S htmlContent Definitions
 
 html: 			String containing HTML content
 
+name: 			Name of content (article title, file name, etc)
+
 author: 		Name of author
 
 publisher: 		Name of publisher
@@ -171,6 +179,8 @@ publisher: 		Name of publisher
 license: 		Any license attached to content
 
 tags:			(Obj) Taxinomical tags
+
+images: 		(Array) URLs to relevant images
 
 geo:			(Obj) Geolocational data
 
@@ -186,6 +196,8 @@ generator: 		Component or library outputting this content
 
 r3sVersion: 	Specification version being used
 
+relationships:	(Obj) A sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
+
 
 details::event
 ==============
@@ -198,6 +210,8 @@ endDatetime
 publishDatetime
 modifedDatetime
 author
+properties {}
+images []
 publisher
 tags
 geo
@@ -218,6 +232,8 @@ mimeType
 published
 modified
 author
+properties
+images []
 publisher
 tags
 geo
@@ -234,21 +250,58 @@ details::profile
 profile is any content which relates to some specific entity - a person, a product, a property, etc. 
 
 name
-properties
-images [x]
-id
-description
+properties {}
+author
+publisher
+license
 tags
+images []
+uuid
+description
 geo
 url
 generator
 copyright
 rating
 r3sVersion
-relationships
+relationships {}
 
-properties::product
-===================
+
+R3S profile Details Definitions
+===============================
+
+name: 			Name of content (article title, file name, etc)
+
+properties:		(Obj) An object containing data relavent to the profile; IE, with product this would contain prices, dimensions, etc.
+
+author: 		Name of author
+
+publisher: 		Name of publisher
+
+license: 		Any license attached to content
+
+tags:			(Obj) Taxinomical tags
+
+images: 		(Array) URLs to relevant images
+
+uuid: 			Unique Universal Identifier (should be unique; urls could change whereas this would remain the same)
+
+description:	Full description of the profile
+
+geo:			(Obj) Geolocational data
+
+url: 			URL of content
+
+generator: 		Component or library outputting this content
+
+copyright: 		Any copyrights attached to content
+
+r3sVersion: 	Specification version being used
+
+relationships:	(Obj) A sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
+
+Example - properties::product
+=============================
 sku
 weight
 dimensions {height, width, length}
@@ -260,8 +313,10 @@ manufacturer {}
 details::channel
 ================
 
+A channel type refers to any item within a parent channel that references a child channel.
+
 name
-images [x]
+images []
 id
 description
 tags
@@ -272,6 +327,7 @@ copyright
 rating
 r3sVesion
 relationships
+items (* if requested at tier depth)
 
 details::tableData
 ==================
