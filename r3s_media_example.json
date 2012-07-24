@@ -1,4 +1,6 @@
 /* NOTE: THIS IS NOT A VALID FEED UNLESS ALL COMMENTS ARE REMOVED; JSON DOES NOT ALLOW COMMENTS */
+/* Also note while there are two example feeds, one photos, and one videos, they can be mixed into a feed of both photos and videos if desired */
+
 /* PHOTOS */
 {
 "thisPage": 1,
@@ -33,7 +35,7 @@
 "author": "Image Author",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": {  } /* unused for photos */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
 
 },
 {
@@ -50,7 +52,7 @@
 "author": "Image Author 2",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": {  } /* unused for photos */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
 
 },
 
@@ -91,7 +93,7 @@
 "author": "Video Author",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": { "htmlEmbed": "[[EMBED CODE HERE]]" } /* if an embed code is needed instead, place it here */
+"details": { "htmlEmbed": "[[EMBED CODE HERE]]", "mimeType": "video/video_format" } /* if an embed code is needed instead, place it here; mimeType minimum needs the "video" reference, the slash and video_format optional */
 
 },
 {
@@ -108,7 +110,7 @@
 "author": "Video Author 2",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": { "htmlEmbed": "[[EMBED CODE HERE 2]]" } /* if an embed code is needed instead, place it here */
+"details": { "htmlEmbed": "[[EMBED CODE HERE]]", "mimeType": "video/video_format" } /* if an embed code is needed instead, place it here; mimeType minimum needs the "video" reference, the slash and video_format optional */
 
 },
 
