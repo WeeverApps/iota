@@ -1,0 +1,115 @@
+/* NOTE: THIS IS NOT A VALID FEED UNLESS ALL COMMENTS ARE REMOVED; JSON DOES NOT ALLOW COMMENTS */
+/* PHOTOS */
+{
+"thisPage": 1,
+"lastPage": 1,
+"count": 2,
+"type": "media",
+"sort": "rdate",
+"language": "en-GB",
+"copyright": null,
+"license": null,
+"generator": "Your JSON Generator Name Here",
+"publisher": null,
+"rating": null,
+"url": "http://myr3sfeedurl.com/feed_url.json",
+"description": "This is a sample feed!",
+"name": null,
+"r3sVersion": "0.9.1",
+"relationships": null,
+"items": [
+
+{
+
+"type" : "media", 
+"description": "This photo description",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"name": "Name of this image",
+"datetime": {"published": "January 1, 2011","modified":"January 1, 2011"}, /* this line is optional */
+"images": ["http://example.com/full-size-image.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "", /* unused for photos, all the details are in this summary feed anyways */
+"uuid": 1, /* id number, anything but must be unique within feed */
+"author": "Image Author",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": {  } /* unused for photos */
+
+},
+{
+
+"type" : "media", 
+"description": "This photo description 2",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"name": "Name of this image 2",
+"datetime": {"published": "January 1, 2011","modified":"January 1, 2011"}, /* this line is optional */
+"images": ["http://example.com/full-size-image-2.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "", /* unused for photos, all the details are in this summary feed anyways */
+"uuid": 2, /* id number, anything but must be unique within feed */
+"author": "Image Author 2",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": {  } /* unused for photos */
+
+},
+
+]
+
+/*VIDEOS */
+
+{
+"thisPage": 1,
+"lastPage": 1,
+"count": 2,
+"type": "media",
+"sort": "rdate",
+"language": "en-GB",
+"copyright": null,
+"license": null,
+"generator": "Your JSON Generator Name Here",
+"publisher": null,
+"rating": null,
+"url": "http://myr3sfeedurl.com/feed_url.json",/* url of this feed */
+"description": "This is a sample feed!",
+"name": null,
+"r3sVersion": "0.9.1",
+"relationships": null,
+"items": [
+
+{
+
+"type" : "media", 
+"description": "This video description",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"name": "Name of this video",
+"datetime": {"published": "January 1, 2011","modified":"January 1, 2011"}, /* this line is optional */
+"images": ["http://example.com/thumbnail1.jpg","http://example.com/thumbnail2.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "http://example.com/video/video_file.videoformat", /* if usable with HTML5 <video> tag */
+"uuid": 1, /* id number, anything but must be unique within feed */
+"author": "Video Author",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": { "htmlEmbed": "[[EMBED CODE HERE]]" } /* if an embed code is needed instead, place it here */
+
+},
+{
+
+"type" : "media", 
+"description": "This video description 2",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"name": "Name of this video 2",
+"datetime": {"published": "January 1, 2011","modified":"January 1, 2011"}, /* this line is optional */
+"images": ["http://example.com/thumbnail12-1.jpg","http://example.com/thumbnail2-2.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "http://example.com/video/video_file2.videoformat", /* if usable with HTML5 <video> tag */
+"uuid": 2, /* id number, anything but must be unique within feed */
+"author": "Video Author 2",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": { "htmlEmbed": "[[EMBED CODE HERE 2]]" } /* if an embed code is needed instead, place it here */
+
+},
+
+]
