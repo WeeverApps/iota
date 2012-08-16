@@ -1,0 +1,59 @@
+/* NOTE: THIS IS NOT A VALID FEED UNLESS ALL COMMENTS ARE REMOVED; JSON DOES NOT ALLOW COMMENTS */
+/* Also note while there are two example feeds, one photos, and one videos, they can be mixed into a feed of both photos and videos if desired */
+
+/* PHOTOS */
+{
+"thisPage": 1,
+"lastPage": 1,
+"count": 2,
+"type": "events",
+"sort": "rdate",
+"language": "en-CA",
+"copyright": null,
+"license": null,
+"generator": "Your JSON Generator Name Here",
+"publisher": null,
+"rating": null,
+"url": "http://myr3sfeedurl.com/feed_url.json",
+"description": "This is a sample feed!",
+"name": null,
+"r3sVersion": "0.9.1",
+"relationships": null,
+"items": [
+
+{
+
+"type" : "events", 
+"name": "This is the name of an event",
+"description": "This is an event description, which can be in HTML and have a large amount of text potentially.",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"datetime": {"start": "2012-01-19T18:00:00-04:00","end":"2012-01-19T19:00:00-04:00", "dateFormat": "ISO8601"}, /* ISO 8601 format, -04:00 is EDT; -05:00 is EST; for zoneless times just use the format 2012-01-19T19:00:00.000Z, will indicate the phone's local timezone */
+"images": ["http://example.com/full-size-image.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "", /* unused for photos, all the details are in this summary feed anyways */
+"uuid": 1, /* id number, anything but must be unique within feed */
+"author": "Image Author",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
+
+},
+{
+
+"type" : "events", 
+"name": "This is the name of an event 2",
+"description": "This is an event description 2, which can be in HTML and have a large amount of text potentially.",
+"geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
+"datetime": {"start": "2012-01-22T18:00:00-04:00","end":"2012-01-22T19:00:00-04:00", "dateFormat": "ISO8601"}, /* ISO 8601 format, -04:00 is EDT; -05:00 is EST; for zoneless times just use the format 2012-01-19T19:00:00.000Z, will indicate the phone's local timezone */
+"images": ["http://example.com/full-size-image.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
+"tags": [] /*optional: unused so far */
+"url": "", /* unused for photos, all the details are in this summary feed anyways */
+"uuid": 1, /* id number, anything but must be unique within feed */
+"author": "Image Author",
+"publisher": "Your Company Name",
+"relationships": {}, /* unused so far */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
+
+}
+
+]
