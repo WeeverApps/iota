@@ -1,7 +1,6 @@
 /* NOTE: THIS IS NOT A VALID FEED UNLESS ALL COMMENTS ARE REMOVED; JSON DOES NOT ALLOW COMMENTS */
-/* Also note while there are two example feeds, one photos, and one videos, they can be mixed into a feed of both photos and videos if desired */
 
-/* PHOTOS */
+/* EVENTS */
 {
 "thisPage": 1,
 "lastPage": 1,
