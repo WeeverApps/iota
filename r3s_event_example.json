@@ -35,7 +35,7 @@
 "author": "Image Author",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image" is just fine */
 
 },
 {
@@ -52,7 +52,7 @@
 "author": "Image Author",
 "publisher": "Your Company Name",
 "relationships": {}, /* unused so far */
-"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image is just fine */
+"details": { "mimeType": "image" } /* with standard web images (png/jpg/gif) we don't need to know image/jpeg or image/png so "image" is just fine */
 
 }
 
