@@ -29,7 +29,7 @@
 "geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
 "datetime": {"start": "2012-01-19T18:00:00-04:00","end":"2012-01-19T19:00:00-04:00", "dateFormat": "ISO8601"}, /* ISO 8601 format, -04:00 is EDT; -05:00 is EST; for zoneless times just use the format 2012-01-19T19:00:00.000Z, will indicate the phone's local timezone */
 "images": ["http://example.com/full-size-image.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
-"tags": [] /*optional: unused so far */
+"tags": [], /*optional: unused so far */
 "url": "", /* unused for photos, all the details are in this summary feed anyways */
 "uuid": 1, /* id number, anything but must be unique within feed */
 "author": "Image Author",
@@ -46,7 +46,7 @@
 "geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"], /* these are optional */
 "datetime": {"start": "2012-01-22T18:00:00-04:00","end":"2012-01-22T19:00:00-04:00", "dateFormat": "ISO8601"}, /* ISO 8601 format, -04:00 is EDT; -05:00 is EST; for zoneless times just use the format 2012-01-19T19:00:00.000Z, will indicate the phone's local timezone */
 "images": ["http://example.com/full-size-image.jpg"], /* full size image (within reason, e.g., less than 1.5 mb), we have a CDN to resize based on phone / tablet resolution profile; it's an array but only so video/other media have a way to present multiple thumbnails */
-"tags": [] /*optional: unused so far */
+"tags": [], /*optional: unused so far */
 "url": "", /* unused for photos, all the details are in this summary feed anyways */
 "uuid": 1, /* id number, anything but must be unique within feed */
 "author": "Image Author",
