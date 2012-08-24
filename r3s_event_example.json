@@ -5,7 +5,7 @@
 "thisPage": 1,
 "lastPage": 1,
 "count": 2,
-"type": "events",
+"type": "event",
 "sort": "rdate",
 "language": "en-CA",
 "copyright": null,
@@ -22,7 +22,7 @@
 
 {
 
-"type" : "events", 
+"type" : "event", 
 "name": "This is the name of an event",
 "description": "This is an event description, which can be in HTML and have a large amount of text potentially.",
 "geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"}], /* these are optional */
@@ -39,7 +39,7 @@
 },
 {
 
-"type" : "events", 
+"type" : "event", 
 "name": "This is the name of an event 2",
 "description": "This is an event description 2, which can be in HTML and have a large amount of text potentially.",
 "geo": [{ "latitude": 0.00, "longitude": 0.00, "address": "123 Fake Street South, Faketon, XX"}], /* these are optional */
