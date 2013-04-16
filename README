@@ -1,7 +1,7 @@
 Really Simple Semantic Syndication (R3S) Draft Specifications
 =============================================================
 
-Version:		0.9.1
+Version:		0.9.2
 Author: 		Robert Gerald Porter
 Copyright: 		2011 Weever Apps Inc.
 
@@ -11,6 +11,7 @@ Revision History:
 0.8.1:	Addition of Geolocational Data to main feed specs
 0.9:	Addition of profile specs, subcategorizations through channel content-type.
 0.9.1:	Addition of fullContent feeds
+0.9.2:	Addition of htmlPreview feed
 
 Background: 
 
@@ -170,6 +171,8 @@ R3S htmlContent Definitions
 
 html: 			String containing HTML content
 
+htmlPreview:	String containing preview of HTML content - can be used as alternative for image
+
 name: 			Name of content (article title, file name, etc)
 
 author: 		Name of author
@@ -212,6 +215,7 @@ modifedDatetime
 author
 properties {}
 images []
+htmlPreview
 publisher
 tags
 geo
@@ -234,6 +238,7 @@ modified
 author
 properties
 images []
+htmlPreview
 htmlEmbed
 publisher
 tags
@@ -256,6 +261,7 @@ author
 publisher
 license
 tags
+htmlPreview
 images []
 uuid
 description
@@ -282,6 +288,8 @@ publisher: 		Name of publisher
 license: 		Any license attached to content
 
 tags:			(Obj) Taxinomical tags
+
+htmlPreview:	String of HTML to be used to preview the content, can be alternative to images
 
 images: 		(Array) URLs to relevant images
 
