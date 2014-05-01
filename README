@@ -1,9 +1,9 @@
-Really Simple Semantic Syndication (R3S) Draft Specifications
-=============================================================
+Internet of Things Aggregation (IoTA) feed Draft Specifications
+===============================================================
 
-Version:		0.9.2
+Version:		0.9.3
 Author: 		Robert Gerald Porter
-Copyright: 		2011 Weever Apps Inc.
+Copyright: 		2011-2014 Weever Apps Inc.
 
 Revision History:
 
@@ -12,10 +12,11 @@ Revision History:
 0.9:	Addition of profile specs, subcategorizations through channel content-type.
 0.9.1:	Addition of fullContent feeds
 0.9.2:	Addition of htmlPreview feed
+0.9.3:  Name changed from "R3S" to "IoTA"
 
 Background: 
 
-R3S was born of the necessity for a standard by which a web application could transmit any public data via a protocol that is lightweight, widely accessible, and easily transformed by a third-party application. While developing Weever, I discovered that RSS was far too limited and slow in many ways.
+IoTA was born of the necessity for a standard by which a web application could transmit any public data via a protocol that is lightweight, widely accessible, and easily transformed by a third-party application. While developing Weever, I discovered that RSS was far too limited and slow in many ways.
 
 For instance, RSS requires XML parsing -- this is both slow and inconsitent in Javascript. RSS is often limited to only the latest data, and that data tends to be inconsistent across implementations: some giving full feed with complete content, some only giving introductory text. Ultimately, if we were to have something elegant and efficient, something else was needed.
 
@@ -29,7 +30,7 @@ Specifications:
 Channel
 =======
 
-An R3S channel only delivers metadata related to a particular query. An R3S reader would then re-request details about a particular object once it is determined by the user what they wish to explore.
+An IoTA channel only delivers metadata related to a particular query. An IoTA reader would then re-request details about a particular object once it is determined by the user what they wish to explore.
 
 thisPage
 lastPage
@@ -46,7 +47,8 @@ url
 description
 geo
 name
-r3sVersion
+iotaVersion
+r3sVersion [deprecated]
 relationships
 items [see items(summary)]
 
@@ -83,7 +85,9 @@ geo:			(Obj) Geolocational data related to channel
 
 name: 			Name of feed source (blog name, gallery name, etc)
 
-r3sVersion: 	Specification version being used
+iotaVersion:   Specification version in use
+
+r3sVersion: 	Deprecated. Use iotaVersion
 
 items: 			(Obj) a sub-object containing the content items (see Items (Summary))
 
@@ -107,7 +111,7 @@ publisher
 relationships {}
 details {}
 
-R3S Items Definitions
+IoTA Items Definitions
 =====================
 
 type: 			Type of content being delivered: html, media, etc
@@ -140,7 +144,7 @@ relationships:	(Obj) A sub-object containing other context-relevant semantical d
 Details-only Feeds
 ==================
 
-An R3S details feed delivers full access to a specific content object.
+An IoTA details feed delivers full access to a specific content object.
 
 
 details::htmlContent
@@ -162,7 +166,7 @@ datetime {pub,mod}
 generator
 copyright
 rating
-r3sVersion
+iotaVersion
 relationships
 
 
@@ -224,7 +228,8 @@ url
 generator
 copyright
 rating
-r3sVersion
+iotaVersion
+r3sVersion [deprecated]
 relationships
 
 details::media
@@ -247,7 +252,8 @@ license
 url
 copyright
 rating
-r3sVersion
+iotaVersion 
+r3sVersion [deprecated]
 relationships
 
 details::profile
@@ -270,11 +276,12 @@ url
 generator
 copyright
 rating
-r3sVersion
+iotaVersion
+r3sVersion [deprecated]
 relationships {}
 
 
-R3S profile Details Definitions
+IoTA profile Details Definitions
 ===============================
 
 name: 			Name of content (article title, file name, etc)
@@ -305,7 +312,9 @@ generator: 		Component or library outputting this content
 
 copyright: 		Any copyrights attached to content
 
-r3sVersion: 	Specification version being used
+iotaVersion: 	Specification version being used
+
+r3sVersion:    Deprecated. Use iotaVersion
 
 relationships:	(Obj) A sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
 
@@ -334,7 +343,8 @@ url
 generator
 copyright
 rating
-r3sVesion
+iotaVersion
+r3sVesion [deprecated]
 relationships
 items (* if requested at tier depth)
 
