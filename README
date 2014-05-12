@@ -52,7 +52,7 @@ r3sVersion [deprecated]
 relationships
 items [see items(summary)]
 
-R3S Channel Definitions
+IoTA Channel Definitions
 =======================
 
 thisPage: 		Pagination, which page of data is being requested (default: 1)
@@ -71,7 +71,7 @@ copyright: 		Copyright statement for the content
 
 license: 		Any licensing pertaining to the content (Creative Commons, GPL, etc)
 
-generator: 		Component or library outputting this content [IE, "R3S 0.8 for Joomla 1.5, release version 0.8.1"]
+generator: 		Component or library outputting this content [IE, "IoTA 0.8 for Joomla 1.5, release version 0.8.1"]
 
 publisher: 		Name of website owner/company
 
@@ -170,7 +170,7 @@ iotaVersion
 relationships
 
 
-R3S htmlContent Definitions
+IoTA htmlContent Definitions
 ============================
 
 html: 			String containing HTML content
