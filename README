@@ -1,7 +1,7 @@
 Internet of Things Aggregation (IoTA) feed Draft Specifications
 ===============================================================
 
-Version:		0.9.3
+Version:		0.9.4
 Author: 		Robert Gerald Porter
 Copyright: 		2011-2014 Weever Apps Inc.
 
@@ -13,6 +13,7 @@ Revision History:
 0.9.1:	Addition of fullContent feeds
 0.9.2:	Addition of htmlPreview feed
 0.9.3:  Name changed from "R3S" to "IoTA"
+0.9.4:  Added optional "actions" item to feed items and details.
 
 Background: 
 
@@ -108,6 +109,7 @@ url
 uuid
 author
 publisher
+actions {}
 relationships {}
 details {}
 
@@ -138,6 +140,8 @@ publisher: 		Name of (original) publisher, used if aggregated content
 
 details:		(Obj) Full details content of item data, should only be in feed when requested or data footprint is low
 
+actions:   (Obj) A list of actions that the current user has permissions to. For example, "delete", "edit", etc. These map onto the endpoint to execute the action, e.g., "action": "http://example.com/api/delete", where "uuid" will be accepted as the indicative parameter.
+
 relationships:	(Obj) A sub-object containing other context-relevant semantical data (IE: parent feeds, geo-locational data, academic references, patent references, co-authorships, cryptology) 
 
 
@@ -160,6 +164,7 @@ license
 tags
 images
 geo
+actions
 url
 uuid
 datetime {pub,mod}
@@ -190,6 +195,8 @@ tags:			(Obj) Taxinomical tags
 images: 		(Array) URLs to relevant images
 
 geo:			(Obj) Geolocational data
+
+actions:   (Obj) A list of actions that the current user has permissions to. For example, "delete", "edit", etc. These map onto the endpoint to execute the action, e.g., "action": "http://example.com/api/delete", where "uuid" will be accepted as the indicative parameter.
 
 copyright: 		Any copyrights attached to content
 
@@ -223,6 +230,7 @@ htmlPreview
 publisher
 tags
 geo
+actions
 license
 url
 generator
@@ -248,6 +256,7 @@ htmlEmbed
 publisher
 tags
 geo
+actions
 license
 url
 copyright
@@ -272,6 +281,7 @@ images []
 uuid
 description
 geo
+actions
 url
 generator
 copyright
@@ -305,6 +315,8 @@ uuid: 			Unique Universal Identifier (should be unique; urls could change wherea
 description:	Full description of the profile
 
 geo:			(Obj) Geolocational data
+
+actions:   (Obj) A list of actions that the current user has permissions to. For example, "delete", "edit", etc. These map onto the endpoint to execute the action, e.g., "action": "http://example.com/api/delete", where "uuid" will be accepted as the indicative parameter.
 
 url: 			URL of content
 
