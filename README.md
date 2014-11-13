@@ -27,10 +27,6 @@ Feed properties are generic properties used as "metadata" about the feed itself.
         "publisher":    "IoTA Publishers Inc.",
         "rating":       "All ages",
         "iotaVersion":  "0.10.0",
-        "thisPage":     1,
-        "lastPage":     1,
-        "count":        1,
-        "sort":         "ascending",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
