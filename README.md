@@ -101,6 +101,22 @@ The `assets` property should contain any assets *required* to view the HTML cont
 
 The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type Schema specifications below.
 
+### Other Notes
+Any property prefixed with underscore `_` should be ignored by IoTA parsers, and considered a "comment", or developer documentation. JSON does not allow for inline comments, so this is our compromise.
+
+Any property prefixed with a double underscore `__` should also be ignored, and should be reserved for content generated automatically by a feed provider for internal purposes. For example, a timestamp, server signature, etc. An example of this usage would be:
+
+    {
+        "__timestamp":      "2014-11-13T14:19:09-05:00",
+        "__server":         "iota-feed-001",
+        "name":             "Test",
+        "tags":             ["testing", "comments"],
+        "properties":       {
+            "test":     true,
+            "_test":    "If true, this is a test, if false this is real."
+        }
+    }
+
 ### Valid Types
 
 
@@ -137,4 +153,4 @@ And that "skeleton" JSON file should contain an "empty" schema of what would be 
         }
     }
     
-Note that anything beginning with an `_` will be ignored. These properties are to be used for making readable comments about the schema. For example, you could include `_listPrice` with the value "This describes the list price of the house" as a means of documentation within the schema, as valid JSON does not allow for javascript-style comments.
+Note that like in the feed format, anything beginning with an `_` will be ignored. These properties are to be used for making readable comments about the schema. For example, you could include `_listPrice` with the value "This describes the list price of the house" as a means of documentation within the schema, as valid JSON does not allow for javascript-style comments.
