@@ -124,33 +124,115 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 * `html` (*or deprecated `htmlContent`*) contains purely HTML content
 * `media` contains multimedia content which may be under the `html` (embed codes) or `assets` array 
 * `event` (*or deprecated `events`*) contains content that has specific times required, generally under the properties `datetime.start` and `datetime.end`
-* `profile` (*or deprecated `profiles`*)
+* `profile` (*or deprecated `profiles`*) contains content that describes a physical object or person
 * `tableData` contains pure data, generally only using the `properties` property in details
 * `inputRequest` contains form information, which could be used to prompt for user responses, and should only contain `properties`
+* `schema` contains architectural information used to describe a custom IoTA type
 
-### Custom Type Schema
+### Custom IoTA Schema
 
 If you wish to enforce or provide a predictable schema for a category of objects, you can specify the `type` as a JSON object, like this:
     
     {
-        "name":         "myNamespace/realEstate",
-        "schemaUrl":    "http://example.com/link-to-a-skeleton-file.json"
+        "name":         "ourMeatCompany/meatCut",
+        "version":      "0.2.0",
+        "schemaUrl":    "http://mysite.com/meat_cut_spec.json"
     }
 
-And that "skeleton" JSON file should contain an "empty" schema of what would be expected at minimum in the `properties` value.
+The IoTA Schema file is itself a valid IoTA feed, with all expected properties inside the `properties` value listed out with `properties.versions["X.y.z"]`, in addition to any notes or comments you might wish others using the feed to read.
 
-    {
-        "_feedDescription": "A skeleton JSON file for the myNamespace/realEstate IoTA type.",
-        "_typeName":        "myNamespace/realEstate",
-        "listPrice":        0,
-        "rooms":            0,
-        "agentOfSale":      "",
-        "acreage":          "",
-        "tags":             [],
-        "dimensions":       {
-            "length":   0,
-            "width":    0
+Note that multiple versions of a schema can be kept within a single file. While these "versions" could instead be any kind of label, it is suggested to follow Semantic Versioning <http://semver.org/>.
+
+	{
+        "name": "ourMeatCompany/meatCut",
+        "description": "Standard feed for a packaged cut of meat.",
+        "iotaVersion": "0.10.0",
+        "author": "Robert Gerald Porter",
+        "copyright": "2014, Weever Apps Inc",
+        "url": "http://mysite.com/meat_cut_spec.json",
+        "type": "schema",
+        "version": "0.2.0",
+        "properties": {
+            "documentationUrl": "http://mysite.com/meat-cut-spec-docs",
+            "validatorUrl": "http://mysite.com/validator/",
+            "currentStableVersion": "0.2.0",
+            "versions": {
+                "0.1.0": {
+                    "_notes": {
+                        "_version_notes": "Initial schema version",
+                        "product": "Meat Product",
+                        "config": "Product package configuration",
+                        "weight": "Weight in kg",
+                        "region": "Name of the county the source farm is in.",
+                        "ration": "Rations that were fed to animal.",
+                        "tenderness": "Score between 0 and 10."
+                    },
+                    "id": 0,
+                    "code": 0,
+                    "product": "",
+                    "config": "",
+                    "weight": 0,
+                    "date": "YYYY-MM-DD",
+                    "region": "",
+                    "ration": "",
+                    "tenderness": 0
+                },
+                "0.2.0": {
+                    "_notes": {
+                        "_version_notes": "Improvements made to structure of properties.",
+                        "product": {
+                            "name": "Name of the cut",
+                            "tenderness": "Rating from 0 through 10.",
+                            "package": {
+                                "config": "The packaging format.",
+                                "date": "Date of packaging",
+                                "weight": "Weight of package in kilograms"
+                            }
+                        },
+                        "farm": {
+                            "region": "Region of the farm",
+                            "ration": "List of rations being fed to the animal",
+                            "address": "Street address of the farm"
+                        }
+                    },
+                    "id": 0,
+                    "code": 0,
+                    "product": {
+                        "name": "",
+                        "tenderness": 0,
+                        "package": {
+                            "config": "",
+                            "date": "YYYY-MM-DD",
+                            "weight": 0
+                        }
+                    },
+                    "farm": {
+                        "region": "",
+                        "ration": "",
+                        "address": ""
+                    }
+                }
+            }
+        },
+        "__success": true,
+        "__server_version": "3.5.193",
+        "__call": {
+            "url": "http://mysite.com/meat_cut_spec.json",
+            "server": "mysite.com",
+            "endpoint": "/meat_cut_spec.json",
+            "query": {
+                "type": "get",
+                "params": {}
+            },
+            "execution_time": "0.111s"
         }
     }
     
-Note that like in the feed format, anything beginning with an `_` will be ignored. These properties are to be used for making readable comments about the schema. For example, you could include `_listPrice` with the value "This describes the list price of the house" as a means of documentation within the schema, as valid JSON does not allow for javascript-style comments.
+Anything outside of the `properties` value of this feed is basically metadata, only the `name` value is required in order to validate the schema is the correct one.
+
+Within `properties`, the only required property is `versions`. Other fields are optional:
+
+* `documentationUrl` (optional) is to provide a website URL to more detailed documentation for the use of the schema.
+* `validatorUrl` (optional) is an URL to a validation service for your IoTA feed using this schema.
+* `currentStableVersion` (optional) should give a new developer a hint as-to which version to choose. Normally this is the highest version, but you may have an experimental schema for testing only you may want users to avoid.
+* `versions` (required) an object with version-number labels containing the properties expected within a object's `properties`. Alternatively, this can be a string with an URL to another IoTA Schema Feed with all the expected properties directly inside `properties`. Anything prefixed with `_` is understood to be a comment, and can be used for inline documentation of the properties.
