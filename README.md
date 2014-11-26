@@ -130,13 +130,20 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 
 
 * `channel` contains sub-objects listed under an array of `items`
-* `html` (*or deprecated `htmlContent`*) contains purely HTML content
+* `html` contains purely HTML content
 * `media` contains multimedia content which may be under the `html` (embed codes) or `assets` array 
-* `event` (*or deprecated `events`*) contains content that has specific times required, generally under the properties `datetime.start` and `datetime.end`
-* `profile` (*or deprecated `profiles`*) contains content that describes a physical object or person
+* `event` contains content that has specific times required, generally under the properties `datetime.start` and `datetime.end`
+* `profile` contains content that describes a physical object or person
 * `tableData` contains pure data, generally only using the `properties` property in details
 * `inputRequest` contains form information, which could be used to prompt for user responses, and should only contain `properties`
 * `schema` contains architectural information used to describe a custom IoTA type
+
+#### Deprecated Types
+
+* `htmlContent` see `html`
+* `events` see `event`
+* `profiles` see `profile` 
+
 
 ### Custom IoTA Schema
 
