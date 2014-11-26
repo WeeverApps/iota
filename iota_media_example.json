@@ -1,0 +1,108 @@
+{
+    "type": "channel",
+    "localization": "en-GB",
+    "copyright": null,
+    "license": null,
+    "generator": "Your JSON Generator Name Here",
+    "publisher": null,
+    "rating": null,
+    "url": "http://myiotafeedurl.com/feed_url.json",
+    "description": "This is a sample feed!",
+    "name": null,
+    "iotaVersion": "0.10.0",
+    "relationships": null,
+    "items": [
+        {
+            "type": "media",
+            "description": "This photo description",
+            "geo": [
+                {
+                    "latitude": 45.8728371,
+                    "longitude": -80.2187392,
+                    "address": "123 Fake Street South, Faketon, XX"
+                }
+            ],
+            "name": "Name of this image",
+            "datetime": {
+                "published": "January 1, 2011",
+                "modified": "January 1, 2011"
+            },
+            "images": [
+                "http://example.com/my-great-image-web-quality.jpg"
+            ],
+            "tags": [
+                "trees",
+                "landscape"
+            ],
+            "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a66",
+            "author": "Image Author",
+            "details": {
+                "mimeType": "image",
+                "assets": [
+                    "http://example.com/my-great-image-full-quality.jpg"
+                ]
+            }
+        },
+        {
+            "type": "media",
+            "description": "This video description",
+            "geo": [
+                {
+                    "latitude": 45.8728371,
+                    "longitude": -80.2187392,
+                    "address": "123 Fake Street South, Faketon, XX"
+                }
+            ],
+            "name": "Name of this video",
+            "datetime": {
+                "published": "January 2, 2012",
+                "modified": "January 2, 2012"
+            },
+            "images": [
+                "http://example.com/thumbnail1.jpg","http://example.com/thumbnail2.jpg"
+            ],
+            "tags": [
+                "city",
+                "landscape"
+            ],
+            "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a67",
+            "author": "Video Author",
+            "details": {
+                "mimeType": "video/mp4",
+                "assets": [
+                    "http://example.com/video/video.mp4"
+                ]
+            }
+        },
+        {
+            "type": "media",
+            "description": "This photo description",
+            "geo": [
+                {
+                    "latitude": 45.8728371,
+                    "longitude": -80.2187392,
+                    "address": "123 Fake Street South, Faketon, XX"
+                }
+            ],
+            "name": "Name of this video",
+            "datetime": {
+                "published": "January 3, 2013",
+                "modified": "January 3, 2013"
+            },
+            "images": [
+                "http://example.com/thumbnail1.jpg","http://example.com/thumbnail2.jpg"
+            ],
+            "tags": [
+                "city",
+                "landscape"
+            ],
+            "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a68",
+            "author": "Video Author",
+            "details": {
+                "mimeType": "html",
+                "assets": [],
+                "html": "[[HTML EMBED CODE HERE]]"
+            }
+        }
+    ]
+}

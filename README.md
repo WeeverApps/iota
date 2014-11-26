@@ -19,7 +19,7 @@ There are three tiers of properties; feed properties, object properties, and det
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
-        "language":     "en-US",
+        "localization": "en-CA",
         "copyright":    "2011-2014 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
         "generator":    "My fancy IoTA Generator",
@@ -30,8 +30,17 @@ Feed properties are generic properties used as "metadata" about the feed itself.
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
-
-Content objects would be included inside `items`.
+    
+`localization` refers to the ISO 639-1 Standard for localization codes: <http://en.wikipedia.org/wiki/Language_localisation> 
+`copyright` is used to declare copyright on the feed content
+`license` is used to indicate a particular content usage license
+`generator` is used to indicate the agent generating the feed
+`author` is used to indicate the author of the content
+`publisher` is used to indicate the service publishing the feed
+`rating` is used to indicate a content rating for age-appropriateness
+`iotaVersion` is used to indicate the version of IoTA standard being used
+`url` indicates the url that the feed was called from
+`items` contains any child content objects
 
 ### Object Properties
 Object properties are properties that describe the content in *summary*. "Feed Properties" may also be mixed in when not contained within an `items` array.

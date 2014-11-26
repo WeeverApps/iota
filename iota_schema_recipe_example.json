@@ -1,0 +1,34 @@
+{
+    "name": "iotaExample/recipe",
+    "description": "Standard feed for a recipe.",
+    "properties": {
+        "versions": {
+            "0.1.0": {
+                "_notes": {
+                    "ingredients": "An array of key-value pairs for ingredient name and amount.",
+                    "steps": "An array of strings with the steps required.",
+                    "nutrition": "The name of the nutrient in the key, with object that contains the amount with key-value pair of unit and amount, and daily intake as integer of percent of daily recommended intake."
+                },
+                "ingredients": {
+                    "ingredient name": "measured amount to use"
+                },
+                "steps": [
+                    "Description of step 1",
+                    "Description of step 2",
+                    "..and so on"
+                ],
+                "serves": 2,
+                "nutrition": {
+                    "nutrient name": {
+                        "amount": {
+                            "grams": 10
+                        },
+                        "dailyIntakePercent": 10
+                    }
+                }
+            }
+        }
+    },
+    "__success": true,
+    "__server_version": "3.5.230"
+}

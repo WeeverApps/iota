@@ -1,0 +1,64 @@
+{
+    "name": "iotaExample/meatCut",
+    "description": "Standard feed for cut of meat.",
+    "properties": {
+        "versions": {
+            "0.1.0": {
+                "_notes": {
+                    "product": "Meat Product",
+                    "config": "Product configuration",
+                    "weight": "Weight in kg",
+                    "region": "Farm region",
+                    "ration": "Rations feed to animal",
+                    "tenderness": "Score between 0 and 10."
+                },
+                "id": 0,
+                "code": 0,
+                "product": "",
+                "config": "",
+                "weight": 0,
+                "date": "YYYY-MM-DD",
+                "region": "",
+                "ration": "",
+                "tenderness": 0
+            },
+            "0.2.0": {
+                "_notes": {
+                    "product": {
+                        "name": "Product Name",
+                        "tenderness": "Tenderness Rating between 0 and 10.",
+                        "package": {
+                            "weight": "Weight of the package in Kilograms",
+                            "date": "Date it was packaged on",
+                            "config": "Configuration of the package"
+                        },
+                        "farm": {
+                            "ration": "Rations fed to animals at this farm",
+                            "region": "Region the farm is located within",
+                            "address": "Street address of the farm"
+                        }
+                    }
+                },
+                "id": 0,
+                "code": 0,
+                "product": {
+                    "name": "",
+                    "tenderness": 0,
+                    "package": {
+                        "config": "",
+                        "date": "YYYY-MM-DD",
+                        "weight": 0
+                    }
+                },
+                "farm": {
+                    "region": "",
+                    "address": "",
+                    "ration": ""
+                },
+                "birth": "YYYY-MM-DD"
+            }
+        }
+    },
+    "__success": true,
+    "__server_version": "3.5.229"
+}

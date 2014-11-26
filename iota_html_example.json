@@ -1,0 +1,60 @@
+{
+    "type": "channel",
+    "localization": "en-CA",
+    "copyright": null,
+    "license": null,
+    "generator": "Your IoTA Generator Name Here",
+    "publisher": null,
+    "rating": null,
+    "url": "http://myiotafeedurl.com/feed_url.json",
+    "description": "This is a sample feed!",
+    "name": null,
+    "iotaVersion": "0.10.0",
+    "relationships": null,
+    "items": [
+        {
+            "type": "html",
+            "name": "The title of the article",
+            "description": "This is a page description, which is meant to be a summary.",
+            "geo": [],
+            "datetime": {
+                "published": "2012-01-19T18:00:00-04:00",
+                "modified": "2012-01-19T19:00:00-04:00",
+                "dateFormat": "ISO8601"
+            },
+            "images": [
+                "http://example.com/an-image.jpg"
+            ],
+            "tags": [
+                "articles",
+                "pages"
+            ],
+            "url": "http://myexample.com/myarticle?feed=iota",
+            "uuid": "9ac83870-725f-11e4-82f8-0800200c9a66",
+            "author": "Feed object author"
+        },
+        {
+            "type": "html",
+            "name": "The title of the article",
+            "description": "This is a page description, which is meant to be a summary.",
+            "geo": [],
+            "datetime": {
+                "published": "2012-01-19T18:00:00-04:00",
+                "modified": "2012-01-19T19:00:00-04:00",
+                "dateFormat": "ISO8601"
+            },
+            "images": [
+                "http://example.com/an-image.jpg"
+            ],
+            "tags": [
+                "articles",
+                "pages"
+            ],
+            "uuid": "9ac83870-725f-11e4-82f8-0800200c9a66",
+            "author": "Feed object author",
+            "details": {
+                "html": "<p>This is an example of an article being embedded as part of the feed, which means no further feeds need to be drilled down to."
+            }
+        }
+    ]
+}

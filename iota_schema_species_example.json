@@ -1,0 +1,67 @@
+{
+    "name": "rgeraldporter/abaAvianSpecies",
+    "description": "Standard JSON for an avian species in the American Birding Association (ABA) zone.",
+    "iotaVersion": "0.10.0",
+    "author": "Robert Gerald Porter",
+    "copyright": "2014 Robert Gerald Porter",
+    "url": "http://mysite.com/avian_species_spec.json",
+    "type": "schema",
+    "version": "0.1.0",
+    "properties": {
+        "documentationUrl": "http://mysite.com/spec-docs",
+        "validatorUrl": "http://mysite.com/validator/",
+        "currentStableVersion": "0.1.0",
+        "versions": {
+            "0.1.0": {
+                "_notes": {
+                    "scientificName": "The latin scientific name.",
+                    "family": "The taxanomic family of this species.",
+                    "aouName": "The AOU name of this species.",
+                    "iucnCategory": "The IUCN Red List status of the species.",
+                    "measurements": "Known range of measurements of adult specimen.",
+                    "localizedNames": "The alternative names for the species in other languages.",
+                    "population": "Estimated world population",
+                    "wikipedia": "URL to the Wikipedia article about the species."
+                },
+                "scientificName": "",
+                "family": "",
+                "aouName": "",
+                "iucnCategory": "LC",
+                "measurements": {
+                    "both sexes": {
+                        "length": [
+                            "14",
+                            "16"
+                        ],
+                        "wingSpan": [
+                            "18",
+                            "25"
+                        ],
+                        "weight": [
+                            "18",
+                            "30"
+                        ]
+                    }
+                },
+                "localizedNames": {
+                    "fr": "",
+                    "de": ""
+                },
+                "population": 200000000,
+                "wikipedia": ""
+            }
+        }
+    },
+    "__success": true,
+    "__server_version": "3.5.193",
+    "__call": {
+        "url": "http://mysite.com/avian_species_spec.json",
+        "server": "mysite.com",
+        "endpoint": "/avian_species_spec.json",
+        "query": {
+            "type": "get",
+            "params": {}
+        },
+        "execution_time": "0.111s"
+    }
+}

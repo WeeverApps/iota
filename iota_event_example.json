@@ -1,0 +1,82 @@
+{
+    "type": "channel",
+    "localization": "en-CA",
+    "copyright": null,
+    "license": null,
+    "generator": "Your IoTA Generator Name Here",
+    "publisher": null,
+    "rating": null,
+    "url": "http://myiotafeedurl.com/feed_url.json",
+    "description": "This is a sample feed!",
+    "name": null,
+    "iotaVersion": "0.10.0",
+    "relationships": null,
+    "items": [
+        {
+            "type": "event",
+            "name": "This is the name of an event",
+            "description": "This is an event description, which is meant to be a summary.",
+            "geo": [
+                {
+                    "latitude": 0,
+                    "longitude": 0,
+                    "address": "123 Fake Street South, Faketon, XX"
+                }
+            ],
+            "datetime": {
+                "start": "2012-01-19T18:00:00-04:00",
+                "end": "2012-01-19T19:00:00-04:00",
+                "dateFormat": "ISO8601"
+            },
+            "images": [
+                "http://example.com/full-size-image.jpg",
+                "http://example.com/thumbnail-image.jpg"
+            ],
+            "tags": [
+                "party",
+                "annual"
+            ],
+            "url": null,
+            "uuid": "9ac83870-725f-11e4-82f8-0800200c9a66",
+            "author": "Feed object author",
+            "publisher": "Feed provider name",
+            "relationships": {},
+            "details": {
+                "html": "<h1>My event</h1><p>This is where a full HTML description could be added"
+            }
+        },
+        {
+            "type": "event",
+            "name": "This is the name of an event",
+            "description": "This is an event description, which is meant to be a summary.",
+            "geo": [
+                {
+                    "latitude": 0,
+                    "longitude": 0,
+                    "address": "123 Fake Street South, Faketon, XX"
+                }
+            ],
+            "datetime": {
+                "start": "2012-01-19T18:00:00-04:00",
+                "end": "2012-01-19T19:00:00-04:00",
+                "dateFormat": "ISO8601"
+            },
+            "images": [
+                "http://example.com/full-size-image.jpg",
+                "http://example.com/thumbnail-image.jpg"
+            ],
+            "tags": [
+                "party",
+                "annual"
+            ],
+            "url": null,
+            "uuid": "9ac83870-725f-11e4-82f8-0800200c9a66",
+            "author": "Feed object author",
+            "publisher": "Feed provider name",
+            "relationships": {},
+            "details": {
+                "html": "<h1>My event</h1><p>This is where a full HTML description could be added"
+            }
+        }
+    ]
+}
