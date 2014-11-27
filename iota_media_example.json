@@ -40,7 +40,7 @@
                 "assets": [
                     {
                         "mimeType": "image",
-                        "url":      "http://example.com/my-great-image-full-quality.jpg"
+                        "url": "http://example.com/my-great-image-full-quality.jpg"
                     }
                 ]
             }
@@ -61,7 +61,8 @@
                 "modified": "January 2, 2012"
             },
             "images": [
-                "http://example.com/thumbnail1.jpg","http://example.com/thumbnail2.jpg"
+                "http://example.com/thumbnail1.jpg",
+                "http://example.com/thumbnail2.jpg"
             ],
             "tags": [
                 "city",
@@ -70,10 +71,11 @@
             "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a67",
             "author": "Video Author",
             "details": {
-                "assets": [{
-                    "url":"http://example.com/video/video.mp4",
-                    "mimeType": "video/mp4"
-                }
+                "assets": [
+                    {
+                        "url": "http://example.com/video/video.mp4",
+                        "mimeType": "video/mp4"
+                    }
                 ]
             }
         },
@@ -93,7 +95,8 @@
                 "modified": "January 3, 2013"
             },
             "images": [
-                "http://example.com/thumbnail1.jpg","http://example.com/thumbnail2.jpg"
+                "http://example.com/thumbnail1.jpg",
+                "http://example.com/thumbnail2.jpg"
             ],
             "tags": [
                 "city",
