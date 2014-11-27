@@ -37,9 +37,11 @@
             "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a66",
             "author": "Image Author",
             "details": {
-                "mimeType": "image",
                 "assets": [
-                    "http://example.com/my-great-image-full-quality.jpg"
+                    {
+                        "mimeType": "image",
+                        "url":      "http://example.com/my-great-image-full-quality.jpg"
+                    }
                 ]
             }
         },
@@ -68,9 +70,10 @@
             "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a67",
             "author": "Video Author",
             "details": {
-                "mimeType": "video/mp4",
-                "assets": [
-                    "http://example.com/video/video.mp4"
+                "assets": [{
+                    "url":"http://example.com/video/video.mp4",
+                    "mimeType": "video/mp4"
+                }
                 ]
             }
         },
@@ -99,7 +102,6 @@
             "uuid": "52309ea0-75a1-11e4-82f8-0800200c9a68",
             "author": "Video Author",
             "details": {
-                "mimeType": "html",
                 "assets": [],
                 "html": "[[HTML EMBED CODE HERE]]"
             }
