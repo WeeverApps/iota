@@ -53,7 +53,11 @@
             "uuid": "9ac83870-725f-11e4-82f8-0800200c9a86",
             "author": "Feed object author",
             "details": {
-                "html": "<p>This is an example of an article being embedded as part of the feed, which means no further feeds need to be drilled down to."
+                "html": "<p>This is an example of an article being embedded as part of the feed, which means no further feeds need to be drilled down to.",
+                "css": {
+                    "url": "http://example.com/mycss.css",
+                    "style": "/*CSS DECLARATIONS COULD ALSO BE HERE IN TEXT*/"
+                }
             }
         }
     ]

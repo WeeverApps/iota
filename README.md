@@ -100,6 +100,10 @@ Detail properties contain detailed information about an object. This is intended
                 "mimeType":     "image/gif"
             }
         ],
+        "css":			{
+        	"url":      "http://example.com/mycss.css",
+        	"style":    "/*CSS DECLARATIONS COULD GO HERE*/"
+        },
         "properties":   {}
     }
 If this JSON was provided in a standalone feed, it would be mixed with properties in the Object Properties section. Otherwise, these properties would be within the `details` property.
