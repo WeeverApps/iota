@@ -112,6 +112,8 @@ The `html` property is designed to contain pure HTML content.
 
 The `assets` property should contain any assets *required* to view the HTML content. If some content is optional and is referenced in the HTML, do no list it here. In the case where no `html` value is specified -- for example, when referencing pure media such as video, audio, or image files, assets should be sorted in the order they are intended to be consumed.
 
+The `css` property should contain an `url` or a `style` property, used to declare stylesheets for the HTML content.
+
 The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type Schema specifications below.
 
 ### Other Notes
