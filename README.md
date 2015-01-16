@@ -1,5 +1,5 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.10.0
+* Version 0.10.1
 * Authored by Robert Gerald Porter 
 * Copyright 2011-2014 Weever Apps Inc
 
@@ -26,7 +26,7 @@ Feed properties are generic properties used as "metadata" about the feed itself.
         "author":       "Jane Doe",
         "publisher":    "IoTA Publishers Inc.",
         "rating":       "All ages",
-        "iotaVersion":  "0.10.0",
+        "iotaVersion":  "0.10.1",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
@@ -140,7 +140,7 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 * `media` contains multimedia content which may be under the `html` (embed codes) or `assets` array 
 * `event` contains content that has specific times required, generally under the properties `datetime.start` and `datetime.end`
 * `profile` contains content that describes a physical object or person
-* `tableData` contains pure data, generally only using the `properties` property in details
+* `data` contains pure data, generally only using the `properties` property in details
 * `inputRequest` contains form information, which could be used to prompt for user responses, and should only contain `properties`
 * `schema` contains architectural information used to describe a custom IoTA type
 
@@ -149,6 +149,7 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 * `htmlContent` see `html`
 * `events` see `event`
 * `profiles` see `profile` 
+* `tableData` see `data`
 
 
 ### Custom IoTA Schema
@@ -168,7 +169,7 @@ Note that multiple versions of a schema can be kept within a single file. While 
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.10.0",
+        "iotaVersion": "0.10.1",
         "author": "Robert Gerald Porter",
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",

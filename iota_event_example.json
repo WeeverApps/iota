@@ -42,7 +42,11 @@
             "publisher": "Feed provider name",
             "relationships": {},
             "details": {
-                "html": "<h1>My event</h1><p>This is where a full HTML description could be added"
+                "html": "<h1>My event</h1><p>This is where a full HTML description could be added",
+                "css": {
+                    "url": "http://example.com/mycss.css",
+                    "style": "/*CSS STYLES HERE*/"
+                }
             }
         },
         {
