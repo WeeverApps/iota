@@ -1,5 +1,5 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.10.1
+* Version 0.11.0
 * Authored by Robert Gerald Porter 
 * Copyright 2011-2014 Weever Apps Inc
 
@@ -26,7 +26,7 @@ Feed properties are generic properties used as "metadata" about the feed itself.
         "author":       "Jane Doe",
         "publisher":    "IoTA Publishers Inc.",
         "rating":       "All ages",
-        "iotaVersion":  "0.10.1",
+        "iotaVersion":  "0.10.3",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
@@ -52,7 +52,7 @@ Generally the detailed content is linked to via the `url` parameter, though it c
     {
         "name":             "My object",
         "uuid":             "655156f0-6b51-11e4-9803-0800200c9a66",
-        "version":          "68138367e67ec45f55d1d624f639baf0",
+        "revision":         "68138367e67ec45f55d1d624f639baf0",
         "type":             "html",
         "geo":              [
             {
@@ -78,7 +78,8 @@ Generally the detailed content is linked to via the `url` parameter, though it c
             }
         ],
         "details":          {}
-    }
+    }    
+    
 The `type` values that are valid are listed below under "Valid Types". 
 
 The `geo` property is for georeferencing an object; perhaps a building location or locations, or a KML polygon shape. 
@@ -108,7 +109,7 @@ Detail properties contain detailed information about an object. This is intended
     }
 If this JSON was provided in a standalone feed, it would be mixed with properties in the Object Properties section. Otherwise, these properties would be within the `details` property.
 
-The `html` property is designed to contain pure HTML content.
+The `html` property is designated to contain pure HTML content.
 
 The `assets` property should contain any assets *required* to view the HTML content. If some content is optional and is referenced in the HTML, do no list it here. In the case where no `html` value is specified -- for example, when referencing pure media such as video, audio, or image files, assets should be sorted in the order they are intended to be consumed.
 
@@ -169,70 +170,72 @@ Note that multiple versions of a schema can be kept within a single file. While 
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.10.1",
+        "iotaVersion": "0.11.0",
         "author": "Robert Gerald Porter",
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",
         "type": "schema",
-        "version": "0.2.0",
-        "properties": {
-            "documentationUrl": "http://mysite.com/meat-cut-spec-docs",
-            "validatorUrl": "http://mysite.com/validator/",
-            "currentStableVersion": "0.2.0",
-            "versions": {
-                "0.1.0": {
-                    "_notes": {
-                        "_version_notes": "Initial schema version",
-                        "product": "Meat Product",
-                        "config": "Product package configuration",
-                        "weight": "Weight in kg",
-                        "region": "Name of the county the source farm is in.",
-                        "ration": "Rations that were fed to animal.",
-                        "tenderness": "Score between 0 and 10."
+        "revision": "abcd1234",
+        "details": {
+            "properties": {
+                "documentationUrl": "http://mysite.com/meat-cut-spec-docs",
+                "validatorUrl": "http://mysite.com/validator/",
+                "currentStableVersion": "0.2.0",
+                "versions": {
+                    "0.1.0": {
+                        "_notes": {
+                            "_version_notes": "Initial schema version",
+                            "product": "Meat Product",
+                            "config": "Product package configuration",
+                            "weight": "Weight in kg",
+                            "region": "Name of the county the source farm is in.",
+                            "ration": "Rations that were fed to animal.",
+                            "tenderness": "Score between 0 and 10."
+                        },
+                        "id": 0,
+                        "code": 0,
+                        "product": "",
+                        "config": "",
+                        "weight": 0,
+                        "date": "YYYY-MM-DD",
+                        "region": "",
+                        "ration": "",
+                        "tenderness": 0
                     },
-                    "id": 0,
-                    "code": 0,
-                    "product": "",
-                    "config": "",
-                    "weight": 0,
-                    "date": "YYYY-MM-DD",
-                    "region": "",
-                    "ration": "",
-                    "tenderness": 0
-                },
-                "0.2.0": {
-                    "_notes": {
-                        "_version_notes": "Improvements made to structure of properties.",
+                    "0.2.0": {
+                        "_notes": {
+                            "_version_notes": "Improvements made to structure of properties.",
+                            "product": {
+                                "name": "Name of the cut",
+                                "tenderness": "Rating from 0 through 10.",
+                                "package": {
+                                    "config": "The packaging format.",
+                                    "date": "Date of packaging",
+                                    "weight": "Weight of package in kilograms"
+                                }
+                            },
+                            "farm": {
+                                "region": "Region of the farm",
+                                "ration": "List of rations being fed to the animal",
+                                "address": "Street address of the farm"
+                            }
+                        },
+                        "id": 0,
+                        "code": 0,
                         "product": {
-                            "name": "Name of the cut",
-                            "tenderness": "Rating from 0 through 10.",
+                            "name": "",
+                            "tenderness": 0,
                             "package": {
-                                "config": "The packaging format.",
-                                "date": "Date of packaging",
-                                "weight": "Weight of package in kilograms"
+                                "config": "",
+                                "date": "YYYY-MM-DD",
+                                "weight": 0
                             }
                         },
                         "farm": {
-                            "region": "Region of the farm",
-                            "ration": "List of rations being fed to the animal",
-                            "address": "Street address of the farm"
+                            "region": "",
+                            "ration": "",
+                            "address": ""
                         }
-                    },
-                    "id": 0,
-                    "code": 0,
-                    "product": {
-                        "name": "",
-                        "tenderness": 0,
-                        "package": {
-                            "config": "",
-                            "date": "YYYY-MM-DD",
-                            "weight": 0
-                        }
-                    },
-                    "farm": {
-                        "region": "",
-                        "ration": "",
-                        "address": ""
                     }
                 }
             }
@@ -251,7 +254,7 @@ Note that multiple versions of a schema can be kept within a single file. While 
         }
     }
     
-Anything outside of the `properties` value of this feed is basically metadata, only the `name` value is required in order to validate the schema is the correct one.
+Anything outside of the `properties` value within `details` in this feed is basically metadata, only the `name` value is required in order to validate the schema is the correct one.
 
 Within `properties`, the only required property is `versions`. Other fields are optional:
 
