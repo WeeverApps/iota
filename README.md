@@ -1,7 +1,7 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
 * Version 0.11.0
 * Authored by Robert Gerald Porter 
-* Copyright 2011-2014 Weever Apps Inc
+* Copyright 2011-2015 Weever Apps Inc
 
 IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum standards that all feeds adhere to.
 
@@ -66,6 +66,7 @@ Generally the detailed content is linked to via the `url` parameter, though it c
         "description":      "A brief summary of the object",
         "images":           ["http://placehold.it/250x150"],
         "tags":             ["example content", "IoTA"],
+        "status":			 "published",
         "datetime":         {
                 "published":    "January 11, 2012"
             },
@@ -117,6 +118,35 @@ The `css` property should contain an `url` or a `style` property, used to declar
 
 The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type Schema specifications below.
 
+### Access and Administrative Control
+
+Though it would never be displayed as part of an aggregated feed unless requested by an administrative user, access control can be handled through an `accessControls` property. 
+
+This is how it might be stored in a database system:
+
+    "accessControls":	{
+    	"access":   {
+    		"keys":		[
+    			"secretkey123",
+    			"secretkey456"	
+    		],
+    		"users":	[
+    			"root",
+    			"john"
+    		]
+    	},
+    	"admin": {
+    		"keys":		[
+    			"supersecretkey12345"
+    		],
+    		"users":	[
+    			"root"
+    		]
+    	}
+    }
+    
+A system delivering IoTA feeds should never expose this property, but accept it when incoming from a trusted source.
+
 ### Other Notes
 Any property prefixed with underscore `_` should be ignored by IoTA parsers, and considered a "comment", or developer documentation. JSON does not allow for inline comments, so this is our compromise.
 
@@ -132,6 +162,7 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
             "_test":    "If true, this is a test, if false this is real."
         }
     }
+    
 
 ### Valid Types
 
