@@ -109,15 +109,16 @@ If more detailed data exists, that content is linked to via the `url` parameter.
 | `taxonomies`	| No 			| Used to attach taxonomical and semantic data, such as tags, genres, categories, and other taxa.|
 | `relationships`|				| Used to refer to related content such as parent/child/sibling objects and citations. |
 | `actions` 	| No 			| Used to indicate API URL endpoints where actions can be taken by the user. Only actions that the user is capable of taking should be indicated.|
-| `details`  	| No 			| Used to provide the full content of the object rather than having the user request further data. Contains data as indicated within the "Detail Properties" listed below.
-|
+| `details`  	| No 			| Used to provide the full content of the object rather than having the user request further data. Contains data as indicated within the "Detail Properties" listed below.|
   
-##### _Deprecated Object Properties_
+##### _Deprecation Notes_
 
 _`tags` is deprecated, replaced by `taxonomies`._
 
+`properties` and `html` were previously accepted outside the scope of `details` within an object, this is no longer the case. These properties should always remain within a `details` property.
+
 ### Detail Properties
-Detail properties contain detailed information about an object. This is intended to be the lowest level of the tiers. "Object properties" may also be mixed in with these when not contained within a `details` property. 
+Detail properties contain detailed information about an object. This is intended to be the lowest level of the tiers. 
 
     {
         "html":         "<h1>Here be our HTML Content</h1><p>Here's the content text. The HTML and BODY tags are not assumed tobe part of this content.</p><p>Here's an image: <img src=\"http://placehold.it/250x150\"></p>",
@@ -133,7 +134,6 @@ Detail properties contain detailed information about an object. This is intended
         },
         "properties":   {}
     }
-If this JSON was provided in a standalone feed, it would be mixed with properties in the Object Properties section. Otherwise, these properties would be within the `details` property.
 
 The `html` property is designated to contain pure HTML content.
 
