@@ -1,59 +1,62 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.11.0
+* Version 0.12.0 
 * Authored by Robert Gerald Porter 
 * Copyright 2011-2015 Weever Apps Inc
 
-IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum standards that all feeds adhere to.
+IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum requirements that all implementations adhere to.
 
-Initially designed as a replacement for RSS technologies to feed content to mobile devices, IoTA has grown into a technique for retrieving content from known sources in a consistent fashion, almost as if it were a distributed database. We have implemented plugins for WordPress and Joomla for retrieving web content in IoTA form, and are now writing tools to retrieve content data direct from database systems such as CouchDB in a standard format.
+Initially designed as a replacement for RSS technologies to feed content to mobile devices, IoTA has grown into a technique for retrieving content from known sources in a consistent fashion. Example implementations have included plugins for CMS systems such as Joomla and WordPress, API interfaces with NoSQL solutions such as CouchDB, and standard feed formats for data aggregating to and from Internet-of-Things (IoT) devices.
 
-It is our aim to continue to adjust the specifications towards the goal of being able to aggregate any data onto any device or platform.
+It is the aim to continue to develop the specifications towards a goal of being able to aggregate any data onto any device or platform.
 
 ## JSON Schema
 
-All feeds are in JSON or JSON-P format. 
+All feeds are in JSON format. Compatible formats such as JSON-P are also acceptible.
 
-There are three tiers of properties; feed properties, object properties, and detail properties.
+There are two tiers of properties: **feed properties**, and **object properties**.
 
-### Feed Properties
+### Feed properties
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
         "localization": "en-CA",
-        "copyright":    "2011-2014 IoTA Widgets Inc.",
+        "copyright":    "2011-2015 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
-        "generator":    "My fancy IoTA Generator",
+        "generator":    "My fancy IoTA Feed Generator",
         "author":       "Jane Doe",
         "publisher":    "IoTA Publishers Inc.",
-        "rating":       "All ages",
-        "iotaVersion":  "0.10.3",
+        "iotaVersion":  "0.12.0",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
     
-`localization` refers to the ISO 639-1 Standard for localization codes: <http://en.wikipedia.org/wiki/Language_localisation> 
-`copyright` is used to declare copyright on the feed content
-`license` is used to indicate a particular content usage license
-`generator` is used to indicate the agent generating the feed
-`author` is used to indicate the author of the content
-`publisher` is used to indicate the service publishing the feed
-`rating` is used to indicate a content rating for age-appropriateness
-`iotaVersion` is used to indicate the version of IoTA standard being used
-`url` indicates the url that the feed was called from
-`items` contains any child content objects
+* `localization` refers to the [ISO 639-1](http://en.wikipedia.org/wiki/Language_localisation) Standard for localization codes, generally two letters for language, two for region. 
+* `copyright` is used to declare copyright on the feed content.
+* `license` is used to indicate a particular content usage license.
+* `generator` is used to indicate the agent generating the feed.
+* `author` is used to indicate the author of the content.
+* `publisher` is used to indicate the service publishing the feed.
+* `rating` is used to indicate a content rating for age-appropriateness.
+* `iotaVersion` is used to indicate the version of IoTA standard being used.
+* `url` indicates the url that the feed was called from.
+* `items` contains any child content objects, used specifically by the IoTA Standard Type `channel`.
 
-### Object Properties
-Object properties are properties that describe the content in *summary*. "Feed Properties" may also be mixed in when not contained within an `items` array.
+### Object properties
+Object properties are properties that describe the content in *summary*. "Feed Properties" should also be mixed in when not contained within an `items` array.
 
-At minimum it contains enough data to give the intended audience enough information to be able to decide if they wish to request all data about an object. 
+At minimum, an object contains enough data to give the intended audience enough information to be able to decide if they wish to request all data about an object. 
 
-Generally the detailed content is linked to via the `url` parameter, though it can also contain all the data available with in the `details` property instead.
+If more detailed data exists, that content is linked to via the `url` parameter. Alternatively, all existing data can be contained within the object's `details` property.
 
     {
         "name":             "My object",
+        "type":             "html",
         "uuid":             "655156f0-6b51-11e4-9803-0800200c9a66",
         "revision":         "68138367e67ec45f55d1d624f639baf0",
-        "type":             "html",
+        "url":              "http://example.com/url-to-the-details-object.json",
+        "description":      "A brief summary of the object",
+        "images":           ["http://placehold.it/250x150"],
+        "status":           "published",
         "geo":              [
             {
                 "address":      "123 Fake Street, Hamilton, Ontario, Canada",
@@ -62,34 +65,56 @@ Generally the detailed content is linked to via the `url` parameter, though it c
                 "altitude":     "0"
             }
         ],
-        "url":              "http://example.com/url-to-the-details-object.json",
-        "description":      "A brief summary of the object",
-        "images":           ["http://placehold.it/250x150"],
-        "tags":             ["example content", "IoTA"],
-        "status":			 "published",
+        "taxonomies":       [
+        		{
+        			"type":		"tags",
+        			"value":	[ "objects", "examples" ]
+        		},
+        		{
+        		    "type":		"categories",
+        		    "value":	[ "published" ]
+        		},
+        		{
+        			"type":	    "genres",
+        			"value":   [ "fiction" ]	
+        		}
+            ],
         "datetime":         {
                 "published":    "January 11, 2012"
-            },
-        "actions":          {
-                "delete":   "http://example.com/api/url_to_delete_object_if_authorized"
             },
         "relationships":    [
             {
                 "references":   "http://example.com/url-to-iota-feed-with-references.json"
             }
         ],
+        "actions":          {
+                "delete":   "http://example.com/api/url_to_delete_object_if_authorized"
+            }
+        ],
         "details":          {}
     }    
     
-The `type` values that are valid are listed below under "Valid Types". 
 
-The `geo` property is for georeferencing an object; perhaps a building location or locations, or a KML polygon shape. 
+| _Property_   	| _Required?_ 	| _Description_ |
+|:-------------	|:------------:	|:--------------------------------------|
+|  `name`      	| **Yes**    	| Indicates the human-readable name of the object. |
+|  `type`      	| **Yes**		| Indicates either the Standard Type or Custom Type that this object belongs to.|
+| `uuid`  		| **Yes** 		| A universally unique identifier for the object.   |
+| `revision`  	| No  			| Used to indicate a unique version of the object.  |
+| `url`  		| No  			| Used to point to either the source of the current object feed, or a source which contains more details about the object.  |
+| `description`	| No 			| A human-readable summary about the object. |
+| `status`		| No			| A singular indicator of the status of the content. |
+| `images`		| No 			| An array of URLs to relevant images.|
+| `geo`			| No 			| Used to geo-reference an object. This can be an array of objects referencing GPS coordinates, addresses, polygon shapes, etc. |
+| `taxonomies`	| No 			| Used to attach taxonomical and semantic data, such as tags, genres, categories, and other taxa.|
+| `relationships`|				| Used to refer to related content such as parent/child/sibling objects and citations. |
+| `actions` 	| No 			| Used to indicate API URL endpoints where actions can be taken by the user. Only actions that the user is capable of taking should be indicated.|
+| `details`  	| No 			| Used to provide the full content of the object rather than having the user request further data. Contains data as indicated within the "Detail Properties" listed below.
+|
+  
+##### _Deprecated Object Properties_
 
-The `actions` property is provided to give API URL endpoints for actions that can be taken by the user who sees the feed (do not display actions the user cannot currently take). 
-
-The `relationships` property is provided in order to provide custom references to other related content. This can be varied depending on the source. It is intended to add semanticity to the feed. 
-
-The `details` property, if used, would contain within the "Detail Properties" listed below.
+_`tags` is deprecated, replaced by `taxonomies`._
 
 ### Detail Properties
 Detail properties contain detailed information about an object. This is intended to be the lowest level of the tiers. "Object properties" may also be mixed in with these when not contained within a `details` property. 
@@ -104,7 +129,7 @@ Detail properties contain detailed information about an object. This is intended
         ],
         "css":			{
         	"url":      "http://example.com/mycss.css",
-        	"style":    "/*CSS DECLARATIONS COULD GO HERE*/"
+        	"style":    "p.example { display: none; }"
         },
         "properties":   {}
     }
@@ -116,7 +141,7 @@ The `assets` property should contain any assets *required* to view the HTML cont
 
 The `css` property should contain an `url` or a `style` property, used to declare stylesheets for the HTML content.
 
-The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type Schema specifications below.
+The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type schema specifications below.
 
 ### Access and Administrative Control
 
@@ -145,18 +170,17 @@ This is how it might be stored in a database system:
     	}
     }
     
-A system delivering IoTA feeds should never expose this property, but accept it when incoming from a trusted source.
+A system delivering IoTA feeds should never expose this property without proper authentication, and should only accept it when incoming from an autenticated source.
 
-### Other Notes
+### Comments and Logging
 Any property prefixed with underscore `_` should be ignored by IoTA parsers, and considered a "comment", or developer documentation. JSON does not allow for inline comments, so this is our compromise.
 
-Any property prefixed with a double underscore `__` should also be ignored, and should be reserved for content generated automatically by a feed provider for internal purposes. For example, a timestamp, server signature, etc. An example of this usage would be:
+Any property prefixed with a double underscore `__` should also be ignored, and should be reserved for content generated automatically by a feed provider for logging or other internal purposes. For example, a timestamp, server signature, etc. 
 
     {
-        "__timestamp":      "2014-11-13T14:19:09-05:00",
-        "__server":         "iota-feed-001",
+        "__timestamp":      "2015-04-13T14:16:19-05:00",
+        "__server":         "iota-feed-aggregator-001",
         "name":             "Test",
-        "tags":             ["testing", "comments"],
         "properties":       {
             "test":     true,
             "_test":    "If true, this is a test, if false this is real."
@@ -164,17 +188,17 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
     }
     
 
-### Valid Types
+### Standard Types
 
+Standard types are the only valid IoTA types where a schema is globally standardized, as opposed to custom schemas which are domain-specific.
 
-* `channel` contains sub-objects listed under an array of `items`
-* `html` contains purely HTML content
-* `media` contains multimedia content which may be under the `html` (embed codes) or `assets` array 
-* `event` contains content that has specific times required, generally under the properties `datetime.start` and `datetime.end`
-* `profile` contains content that describes a physical object or person
-* `data` contains pure data, generally only using the `properties` property in details
-* `inputRequest` contains form information, which could be used to prompt for user responses, and should only contain `properties`
-* `schema` contains architectural information used to describe a custom IoTA type
+* `channel` denotes a collection of sub-objects contained within property `items`. 
+* `html` denotes standard HTML content.
+* `media` denotes media content, such as images, video, audio, or multimedia. 
+* `event` denotes content with a limited time range, such as an appointment, due date, or gathering.
+* `profile` denotes content that describes an object, person, or group.
+* `data` denotes schemaless data, with all content generally found within `properties`.
+* `schema` denotes architectural information used to describe a custom IoTA type instead of a standard type.
 
 #### Deprecated Types
 
@@ -182,9 +206,12 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 * `events` see `event`
 * `profiles` see `profile` 
 * `tableData` see `data`
+* `inputRequest` is no longer valid; a custom schema should be used instead.
 
 
-### Custom IoTA Schema
+### Custom Types
+
+Custom Types exist to allow great flexibility in the IoTA standard. The six Standard Types (ignoring `schema` type) have been selected and designed for their universality, and while useful for most contexts, are not useful for all. In circumstances where adherance to a custom schema is required, the standard types are not sufficient. 
 
 If you wish to enforce or provide a predictable schema for a category of objects, you can specify the `type` as a JSON object, like this:
     
@@ -193,15 +220,17 @@ If you wish to enforce or provide a predictable schema for a category of objects
         "version":      "0.2.0",
         "schemaUrl":    "http://mysite.com/meat_cut_spec.json"
     }
+    
+The Custom Type `name` property follows a *domain pattern* whereby a domain (such as a company name) is used to namespace a Custom Type. This can be done at several levels if desired, such as `aCompanyName/internalNamespace/anObject`.
 
-The IoTA Schema file is itself a valid IoTA feed, with all expected properties inside the `properties` value listed out with `properties.versions["X.y.z"]`, in addition to any notes or comments you might wish others using the feed to read.
+The IoTA Schema JSON feed is itself a valid IoTA feed, with all expected properties inside the `properties` value listed out with `properties.versions["X.y.z"]`, in addition to any notes or comments you might wish others using the feed to read.
 
-Note that multiple versions of a schema can be kept within a single file. While these "versions" could instead be any kind of label, it is suggested to follow Semantic Versioning <http://semver.org/>.
+Multiple versions of a schema can be kept within a single file. While these "versions" could instead be any kind of label, it is suggested to follow Semantic Versioning as described on [SemVer.org](http://semver.org/).
 
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.11.0",
+        "iotaVersion": "0.12.0",
         "author": "Robert Gerald Porter",
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",
@@ -211,7 +240,7 @@ Note that multiple versions of a schema can be kept within a single file. While 
             "properties": {
                 "documentationUrl": "http://mysite.com/meat-cut-spec-docs",
                 "validatorUrl": "http://mysite.com/validator/",
-                "currentStableVersion": "0.2.0",
+                "currentReleaseVersion": "0.2.0",
                 "versions": {
                     "0.1.0": {
                         "_notes": {
@@ -285,11 +314,11 @@ Note that multiple versions of a schema can be kept within a single file. While 
         }
     }
     
-Anything outside of the `properties` value within `details` in this feed is basically metadata, only the `name` value is required in order to validate the schema is the correct one.
+The `name` property is required in order to validate the schema is the correct one. 
 
 Within `properties`, the only required property is `versions`. Other fields are optional:
 
 * `documentationUrl` (optional) is to provide a website URL to more detailed documentation for the use of the schema.
-* `validatorUrl` (optional) is an URL to a validation service for your IoTA feed using this schema.
-* `currentStableVersion` (optional) should give a new developer a hint as-to which version to choose. Normally this is the highest version, but you may have an experimental schema for testing only you may want users to avoid.
+* `validatorUrl` (optional) is an URL to a validation service for your IoTA feed using this schema. Note that validators do not currently have a standard API so you will need to consult any API documentation available.
+* `currentReleaseVersion` (optional) should give a new developer a hint as-to which version to choose. Normally this is the highest version, but you may have an experimental schema for testing only you may want users to avoid.
 * `versions` (required) an object with version-number labels containing the properties expected within a object's `properties`. Alternatively, this can be a string with an URL to another IoTA Schema Feed with all the expected properties directly inside `properties`. Anything prefixed with `_` is understood to be a comment, and can be used for inline documentation of the properties.
