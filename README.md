@@ -19,27 +19,32 @@ There are two tiers of properties: **feed properties**, and **object properties*
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
+        "iotaVersion":  "0.12.0",
+        "type":         "channel",
         "localization": "en-CA",
         "copyright":    "2011-2015 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
         "generator":    "My fancy IoTA Feed Generator",
         "author":       "Jane Doe",
         "publisher":    "IoTA Publishers Inc.",
-        "iotaVersion":  "0.12.0",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
     }
-    
-* `localization` refers to the [ISO 639-1](http://en.wikipedia.org/wiki/Language_localisation) Standard for localization codes, generally two letters for language, two for region. 
-* `copyright` is used to declare copyright on the feed content.
-* `license` is used to indicate a particular content usage license.
-* `generator` is used to indicate the agent generating the feed.
-* `author` is used to indicate the author of the content.
-* `publisher` is used to indicate the service publishing the feed.
-* `rating` is used to indicate a content rating for age-appropriateness.
-* `iotaVersion` is used to indicate the version of IoTA standard being used.
-* `url` indicates the url that the feed was called from.
-* `items` contains any child content objects, used specifically by the IoTA Standard Type `channel`.
+
+| _Property_   	| _Required?_ 	| _Description_ |
+|:-------------	|:------------:	|:--------------------------------------|
+|  `iotaVersion`  | **Yes** | Indicates the IoTA Specification version. |
+|  `type` | **Yes**	| Indicates either the Standard Type or Custom Type that this object belongs to. |
+| `localization`| No | Refers to the [ISO 639-1](http://en.wikipedia.org/wiki/Language_localisation) Standard for localization codes, generally two letters for language, two for region, e.g. "en-US" for U.S. English.  |
+| `copyright` | No  | Used to declare copyright on the feed content.  |
+| `url`| No  | indicates the url that the feed was called from.  |
+| `license`	| No | Used to indicate a particular content usage license. |
+| `generator`| No | Used to indicate the agent generating the feed. |
+| `author`| No | Used to indicate the author of the content. |
+| `publisher`| No | Used to indicate the service publishing the feed|
+| `rating`| No | Used to indicate a content rating for age-appropriateness. |
+| `items`| No | Contains any child content objects, used specifically by the IoTA Standard Type `channel`.|
+
 
 ### Object properties
 Object properties are properties that describe the content in *summary*. "Feed Properties" should also be mixed in when not contained within an `items` array.
@@ -51,6 +56,7 @@ If more detailed data exists, that content is linked to via the `url` parameter.
     {
         "name":             "My object",
         "type":             "html",
+        "iotaVersion":		 "0.12.0",
         "uuid":             "655156f0-6b51-11e4-9803-0800200c9a66",
         "revision":         "68138367e67ec45f55d1d624f639baf0",
         "url":              "http://example.com/url-to-the-details-object.json",
@@ -99,6 +105,7 @@ If more detailed data exists, that content is linked to via the `url` parameter.
 |:-------------	|:------------:	|:--------------------------------------|
 |  `name`      	| **Yes**    	| Indicates the human-readable name of the object. |
 |  `type`      	| **Yes**		| Indicates either the Standard Type or Custom Type that this object belongs to.|
+| `iotaVersion` | **Yes**			| An indicator for the version of IoTA you are using |
 | `uuid`  		| **Yes** 		| A universally unique identifier for the object.   |
 | `revision`  	| No  			| Used to indicate a unique version of the object.  |
 | `url`  		| No  			| Used to point to either the source of the current object feed, or a source which contains more details about the object.  |
@@ -134,14 +141,14 @@ Detail properties contain detailed information about an object. This is intended
         },
         "properties":   {}
     }
+    
+| _Property_   	| _Description_ |
+|:-------------	|:--------------------------------------|
+|  `html`      	| A string containing purely HTML-formatted content. |
+|  `assets` | Digital assets such as images, video, audio, or multimedia content. Also, when used in concert with the `html` property, `assets` should contain references to any assets that are *required* to render the HTML so that offline systems can pre-cache media. Each asset should have a `mimeType` and `url`. |
+| `css`| Any CSS content required to compliment the `html` content. Accepted properties include `url` (an URL to a CSS stylesheet), and `style` (a string of CSS declarations). |
+| `properties`| A catch-all object space for more complex objects as described below under "Custom Types". This object may also be schemaless, should the `data` type be chosen. |
 
-The `html` property is designated to contain pure HTML content.
-
-The `assets` property should contain any assets *required* to view the HTML content. If some content is optional and is referenced in the HTML, do no list it here. In the case where no `html` value is specified -- for example, when referencing pure media such as video, audio, or image files, assets should be sorted in the order they are intended to be consumed.
-
-The `css` property should contain an `url` or a `style` property, used to declare stylesheets for the HTML content.
-
-The `properties` object is intended to be a catch-all for more complex objects being described with variables. For example, a real estate property being described as an object in a feed would contain specific properties such as `listPrice`, `rooms`, `acreage`, etc. These can be left *schemaless* if the intention is for a developer to handle any property that is given; however, if you wish to specify a schema in order to enforce consistency, see the Custom Type schema specifications below.
 
 ### Access and Administrative Control
 
@@ -158,6 +165,9 @@ This is how it might be stored in a database system:
     		"users":	[
     			"root",
     			"john"
+    		],
+    		"roles":	[
+    			"employee"
     		]
     	},
     	"admin": {
@@ -166,6 +176,9 @@ This is how it might be stored in a database system:
     		],
     		"users":	[
     			"root"
+    		],
+    		"roles":    [
+    			"manager"
     		]
     	}
     }
@@ -192,22 +205,25 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
 
 Standard types are the only valid IoTA types where a schema is globally standardized, as opposed to custom schemas which are domain-specific.
 
-* `channel` denotes a collection of sub-objects contained within property `items`. 
-* `html` denotes standard HTML content.
-* `media` denotes media content, such as images, video, audio, or multimedia. 
-* `event` denotes content with a limited time range, such as an appointment, due date, or gathering.
-* `profile` denotes content that describes an object, person, or group.
-* `data` denotes schemaless data, with all content generally found within `properties`.
-* `schema` denotes architectural information used to describe a custom IoTA type instead of a standard type.
+| Type | Description |
+|:---------|:---------------------------------------------------------------------------------------------------|
+| `channel` | A collection of sub-objects contained within property `items` |
+| `html` | Standard HTML content |
+| `media` | Media content, such as images, video, audio, or multimedia. |
+| `event` | Content with a limited time range, such as an appointment, due date, or gathering. |
+| `profile` | Content that describes an object, person, or group. |
+| `data` | Schema-less data, with all content generally found within `properties`. |
+| `schema` | denotes architectural information used to describe a custom IoTA type instead of a standard type. |
 
 #### Deprecated Types
 
-* `htmlContent` see `html`
-* `events` see `event`
-* `profiles` see `profile` 
-* `tableData` see `data`
-* `inputRequest` is no longer valid; a custom schema should be used instead.
-
+| Deprecated Type | Replaced by |
+|:---------|:---------------------------------------------------------------------------------------------------|
+| `htmlContent` | `html` |
+| `events` | `event`|
+| `profiles` | `profile` |
+| `tableData` | `data` |
+| `inputRequest` | No direct replacement - use Custom Types instead. |
 
 ### Custom Types
 
@@ -243,6 +259,9 @@ Multiple versions of a schema can be kept within a single file. While these "ver
                 "currentReleaseVersion": "0.2.0",
                 "versions": {
                     "0.1.0": {
+                        "_map": {
+                       		"name": "product"
+                        },
                         "_notes": {
                             "_version_notes": "Initial schema version",
                             "product": "Meat Product",
@@ -279,6 +298,13 @@ Multiple versions of a schema can be kept within a single file. While these "ver
                                 "ration": "List of rations being fed to the animal",
                                 "address": "Street address of the farm"
                             }
+                        },
+                        "_map": {
+                        	"name": {
+                        		"product": {
+                        			"name": ""
+                        		}
+                        	}
                         },
                         "id": 0,
                         "code": 0,
