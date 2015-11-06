@@ -1,5 +1,5 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.12.0 
+* Version 0.13.0 
 * Authored by Robert Gerald Porter 
 * Copyright 2011-2015 Weever Apps Inc
 
@@ -19,8 +19,8 @@ There are two tiers of properties: **feed properties**, and **object properties*
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
-        "iotaVersion":  "0.12.0",
-        "type":         "channel",
+        "iotaVersion":  "0.13.0",
+        "type":         "collection",
         "localization": "en-CA",
         "copyright":    "2011-2015 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
@@ -43,7 +43,7 @@ Feed properties are generic properties used as "metadata" about the feed itself.
 | `author`| No | Used to indicate the author of the content. |
 | `publisher`| No | Used to indicate the service publishing the feed|
 | `rating`| No | Used to indicate a content rating for age-appropriateness. |
-| `items`| No | Contains any child content objects, used specifically by the IoTA Standard Type `channel`.|
+| `items`| No | Contains any child content objects, used specifically by the IoTA Standard Type `collection`.|
 
 
 ### Object properties
@@ -185,10 +185,12 @@ This is how it might be stored in a database system:
     
 A system delivering IoTA feeds should never expose this property without proper authentication, and should only accept it when incoming from an autenticated source.
 
-### Comments and Logging
+### Comments, Logging, and Reserved Keys
 Any property prefixed with underscore `_` should be ignored by IoTA parsers, and considered a "comment", or developer documentation. JSON does not allow for inline comments, so this is our compromise.
 
 Any property prefixed with a double underscore `__` should also be ignored, and should be reserved for content generated automatically by a feed provider for logging or other internal purposes. For example, a timestamp, server signature, etc. 
+
+Any property key prefixed with an 'at' symbol `@` is a reserved key, for specific functional use in IoTA parsing. An example would be mapping the schema-defined values of a stash to a root IoTA property.
 
     {
         "__timestamp":      "2015-04-13T14:16:19-05:00",
@@ -199,7 +201,6 @@ Any property prefixed with a double underscore `__` should also be ignored, and 
             "_test":    "If true, this is a test, if false this is real."
         }
     }
-    
 
 ### Standard Types
 
@@ -207,18 +208,19 @@ Standard types are the only valid IoTA types where a schema is globally standard
 
 | Type | Description |
 |:---------|:---------------------------------------------------------------------------------------------------|
-| `channel` | A collection of sub-objects contained within property `items` |
+| `collection` | A collection of sub-objects contained within property `items` |
 | `html` | Standard HTML content |
 | `media` | Media content, such as images, video, audio, or multimedia. |
 | `event` | Content with a limited time range, such as an appointment, due date, or gathering. |
 | `profile` | Content that describes an object, person, or group. |
 | `data` | Schema-less data, with all content generally found within `properties`. |
-| `schema` | denotes architectural information used to describe a custom IoTA type instead of a standard type. |
+| `schema` | Denotes architectural information used to describe a custom IoTA type instead of a standard type. |
 
 #### Deprecated Types
 
 | Deprecated Type | Replaced by |
 |:---------|:---------------------------------------------------------------------------------------------------|
+| `channel` | `collection` |
 | `htmlContent` | `html` |
 | `events` | `event`|
 | `profiles` | `profile` |
@@ -246,7 +248,7 @@ Multiple versions of a schema can be kept within a single file. While these "ver
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.12.0",
+        "iotaVersion": "0.13.0",
         "author": "Robert Gerald Porter",
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",
@@ -259,7 +261,7 @@ Multiple versions of a schema can be kept within a single file. While these "ver
                 "currentReleaseVersion": "0.2.0",
                 "versions": {
                     "0.1.0": {
-                        "_map": {
+                        "@map": {
                        		"name": "product"
                         },
                         "_notes": {
@@ -299,7 +301,7 @@ Multiple versions of a schema can be kept within a single file. While these "ver
                                 "address": "Street address of the farm"
                             }
                         },
-                        "_map": {
+                        "@map": {
                         	"name": {
                         		"product": {
                         			"name": ""
