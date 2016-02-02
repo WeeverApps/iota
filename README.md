@@ -1,6 +1,6 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.13.0 
-* Authored by Robert Gerald Porter 
+* Version 0.14.0 
+* Authored by Robert Gerald Porter & Matt Grande
 * Copyright 2011-2015 Weever Apps Inc
 
 IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum requirements that all implementations adhere to.
@@ -157,31 +157,27 @@ Though it would never be displayed as part of an aggregated feed unless requeste
 This is how it might be stored in a database system:
 
     "accessControls":	{
-    	"access":   {
-    		"keys":		[
-    			"secretkey123",
-    			"secretkey456"	
-    		],
-    		"users":	[
-    			"root",
-    			"john"
-    		],
-    		"roles":	[
-    			"employee"
-    		]
-    	},
-    	"admin": {
-    		"keys":		[
-    			"supersecretkey12345"
-    		],
-    		"users":	[
-    			"root"
-    		],
-    		"roles":    [
-    			"manager"
-    		]
-    	}
+        "users": {
+            "john": [
+            	"read"
+            ],
+            "fred": [
+                { "read": "deny" }
+            ]
+        },
+        "roles": {
+            "staff": [
+                "read"
+            ],
+            "admin": [
+                "write"
+            ]
+        }
     }
+    
+At the deepest level, an array where each element is either a string or an object is provided. If it is a `string`, the permission is presumed to be allowed, however an object can explicitly say if the permission is allowed or denied.
+
+In the above example, all staff members would have `read` access, except Fred, as he is explicitly denied access.
     
 A system delivering IoTA feeds should never expose this property without proper authentication, and should only accept it when incoming from an autenticated source.
 
