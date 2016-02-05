@@ -158,20 +158,23 @@ This is how it might be stored in a database system:
 
     "accessControls":	{
         "users": {
-            "john": [
-            	"read"
-            ],
-            "fred": [
-                { "read": "deny" }
-            ]
+            "john": { 
+            	"read": true, 
+            	"write": true
+            },
+            "fred": { 
+            	"read": false
+            }
         },
         "roles": {
-            "staff": [
-                "read"
-            ],
-            "admin": [
-                "write"
-            ]
+            "staff": { 
+            	"read": true, 
+            	"write": false 
+            },
+            "admin": { 
+            	"read": true, 
+            	"write": true
+            }
         }
     }
     
