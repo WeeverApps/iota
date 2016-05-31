@@ -1,6 +1,6 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
-* Version 0.14.0 
-* Authored by Robert Gerald Porter & Matt Grande
+* Version 0.15.0 DRAFT 
+* Authored by: Robert Gerald Porter, Matt Grande
 * Copyright 2011-2016 Weever Apps Inc
 
 IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum requirements that all implementations adhere to.
@@ -19,10 +19,10 @@ There are two tiers of properties: **feed properties**, and **object properties*
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
-        "iotaVersion":  "0.14.0",
+        "iotaVersion":  "0.15.0",
         "type":         "collection",
         "localization": "en-CA",
-        "copyright":    "2011-2015 IoTA Widgets Inc.",
+        "copyright":    "2011-2016 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
         "generator":    "My fancy IoTA Feed Generator",
         "authors":      ["Jane Doe", "John Smith"],
@@ -55,19 +55,23 @@ If more detailed data exists, that content is linked to via the `url` parameter.
     {
     	"name": "My object",
     	"type": "html",
-    	"iotaVersion": "0.14.0",
+    	"iotaVersion": "0.15.0",
     	"uuid": "655156f0-6b51-11e4-9803-0800200c9a66",
     	"revision": "68138367e67ec45f55d1d624f639baf0",
     	"authors": ["Jane Doe", "Jon Smith"],
     	"url": "http://example.com/url-to-the-details-object.json",
     	"description": "A brief summary of the object",
     	"images": ["http://placehold.it/250x150"],
-    	"geo": [{
-    		"address": "123 Fake Street, Hamilton, Ontario, Canada",
-    		"latitude": "45.00",
-    		"longitude": "65.00",
-    		"altitude": "0"
-    	}],
+    	"geo": {
+    		"type": "Feature",
+    		"geometry": {
+    			"type": "Point",
+    			"coordinates": [125.6, 10.1]
+    		},
+    		"properties": {
+    			"address": "1234 Fake Street, Hamilton, Ontario, Canada"
+    		}
+    	},
     	"taxonomies": {
 
     		"tags": ["objects", "examples"],
@@ -103,7 +107,7 @@ If more detailed data exists, that content is linked to via the `url` parameter.
 | `description`	| No 			| A human-readable summary about the object. |
 | `status`		| No			| An array of the status(es) of the content. |
 | `images`		| No 			| An array of URLs to relevant images.|
-| `geo`			| No 			| Used to geo-reference an object. This can be an array of objects referencing GPS coordinates, addresses, polygon shapes, etc. |
+| `geo`			| No 			| Used to geo-reference an object. As of 0.15.0, this must be a valid [GeoJSON](http://geojson.org/) object. |
 | `taxonomies`	| No 			| Used to attach taxonomical and semantic data, such as tags, genres, categories, and other taxa.|
 | `relationships`|				| Used to refer to related content such as parent/child/sibling objects and citations. |
 | `actions` 	| No 			| Used to indicate API URL endpoints where actions can be taken by the user. Only actions that the user is capable of taking should be indicated.|
@@ -111,9 +115,11 @@ If more detailed data exists, that content is linked to via the `url` parameter.
   
 ##### _Deprecation Notes_
 
-_`tags` is deprecated, replaced by `taxonomies`. Please add tags as an individual taxonomy._
+* `tags` is deprecated, replaced by `taxonomies`. Please add tags as an individual taxonomy.
 
-`properties` and `html` were previously accepted outside the scope of `details` within an object, this is no longer the case. These properties should always remain within a `details` property.
+* `properties` and `html` were previously accepted outside the scope of `details` within an object, this is no longer the case. These properties should always remain within a `details` property.
+
+* `geo` previous to v0.15.0 accepted an array of objects, containing the properties `address`, `latitude`, `longitude`, `altitude`, `kml`.
 
 ### Detail-Properties
 Detail-properties contain detailed information about an object. This is intended to be the lowest level of the tiers, and is optional when retrieving summary data, such as in feeds.
@@ -238,7 +244,7 @@ Multiple versions of a schema can be kept within a single file. While these "ver
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.14.0",
+        "iotaVersion": "0.15.0",
         "authors": ["Robert Gerald Porter"],
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",
