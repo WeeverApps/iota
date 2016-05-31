@@ -1,6 +1,6 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
 * Version 0.15.0 DRAFT 
-* Authored by: Robert Gerald Porter, Matt Grande
+* Authored by: Robert Gerald Porter, Matt Grande, Garth Gutenberg
 * Copyright 2011-2016 Weever Apps Inc
 
 IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum requirements that all implementations adhere to.
