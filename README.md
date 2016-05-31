@@ -73,14 +73,12 @@ If more detailed data exists, that content is linked to via the `url` parameter.
     		}
     	},
     	"taxonomies": {
-
     		"tags": ["objects", "examples"],
     		"categories": ["things"],
     		"genres": ["fiction"]
     	},
     	"status": ["draft"],
     	"datetime": {
-
     		"published": 1454686890,
     		"created": 1454695972,
     		"updated": 1454712871
