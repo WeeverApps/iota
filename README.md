@@ -1,7 +1,7 @@
 # Internet of Things Aggregation (IoTA) Feed Specifications
 * Version 0.14.0 
 * Authored by Robert Gerald Porter & Matt Grande
-* Copyright 2011-2015 Weever Apps Inc
+* Copyright 2011-2016 Weever Apps Inc
 
 IoTA is a standard for delivering any kind of content via JSON or JSON-P. It is designed to be semantic and scalable, whilst being specific enough to have minimum requirements that all implementations adhere to.
 
@@ -19,13 +19,13 @@ There are two tiers of properties: **feed properties**, and **object properties*
 Feed properties are generic properties used as "metadata" about the feed itself. 
 
     {
-        "iotaVersion":  "0.13.0",
+        "iotaVersion":  "0.14.0",
         "type":         "collection",
         "localization": "en-CA",
         "copyright":    "2011-2015 IoTA Widgets Inc.",
         "license":      "Creative Commons Attribution 4.0 International",
         "generator":    "My fancy IoTA Feed Generator",
-        "author":       "Jane Doe",
+        "authors":      ["Jane Doe", "John Smith"],
         "publisher":    "IoTA Publishers Inc.",
         "url":          "http://example.com/url-to-this-feed.json",
         "items":        []
@@ -40,9 +40,8 @@ Feed properties are generic properties used as "metadata" about the feed itself.
 | `url`| No  | indicates the url that the feed was called from.  |
 | `license`	| No | Used to indicate a particular content usage license. |
 | `generator`| No | Used to indicate the agent generating the feed. |
-| `author`| No | Used to indicate the author of the content. |
+| `authors`| No | Used to indicate the author(s) of the content. |
 | `publisher`| No | Used to indicate the service publishing the feed|
-| `rating`| No | Used to indicate a content rating for age-appropriateness. |
 | `items`| No | Contains any child content objects, used specifically by the IoTA Standard Type `collection`.|
 
 
@@ -54,51 +53,42 @@ At minimum, an object contains enough data to give the intended audience enough 
 If more detailed data exists, that content is linked to via the `url` parameter. Alternatively, all existing data can be contained within the object's `details` property.
 
     {
-        "name":             "My object",
-        "type":             "html",
-        "iotaVersion":		 "0.12.0",
-        "uuid":             "655156f0-6b51-11e4-9803-0800200c9a66",
-        "revision":         "68138367e67ec45f55d1d624f639baf0",
-        "url":              "http://example.com/url-to-the-details-object.json",
-        "description":      "A brief summary of the object",
-        "images":           ["http://placehold.it/250x150"],
-        "status":           "published",
-        "geo":              [
-            {
-                "address":      "123 Fake Street, Hamilton, Ontario, Canada",
-                "latitude":     "45.00",
-                "longitude":    "65.00",
-                "altitude":     "0"
-            }
-        ],
-        "taxonomies":       [
-        		{
-        			"type":		"tags",
-        			"value":	[ "objects", "examples" ]
-        		},
-        		{
-        		    "type":		"categories",
-        		    "value":	[ "published" ]
-        		},
-        		{
-        			"type":	    "genres",
-        			"value":   [ "fiction" ]	
-        		}
-            ],
-        "datetime":         {
-                "published":    "January 11, 2012"
-            },
-        "relationships":    [
-            {
-                "references":   "http://example.com/url-to-iota-feed-with-references.json"
-            }
-        ],
-        "actions":          {
-                "delete":   "http://example.com/api/url_to_delete_object_if_authorized"
-            }
-        ],
-        "details":          {}
-    }    
+    	"name": "My object",
+    	"type": "html",
+    	"iotaVersion": "0.14.0",
+    	"uuid": "655156f0-6b51-11e4-9803-0800200c9a66",
+    	"revision": "68138367e67ec45f55d1d624f639baf0",
+    	"authors": ["Jane Doe", "Jon Smith"],
+    	"url": "http://example.com/url-to-the-details-object.json",
+    	"description": "A brief summary of the object",
+    	"images": ["http://placehold.it/250x150"],
+    	"geo": [{
+    		"address": "123 Fake Street, Hamilton, Ontario, Canada",
+    		"latitude": "45.00",
+    		"longitude": "65.00",
+    		"altitude": "0"
+    	}],
+    	"taxonomies": {
+
+    		"tags": ["objects", "examples"],
+    		"categories": ["things"],
+    		"genres": ["fiction"]
+    	},
+    	"status": ["draft"],
+    	"datetime": {
+
+    		"published": 1454686890,
+    		"created": 1454695972,
+    		"updated": 1454712871
+    	},
+    	"relationships": [{
+    		"references": "http://example.com/url-to-iota-feed-with-references.json"
+    	}],
+    	"actions": {
+    		"delete": "http://example.com/api/url_to_delete_object_if_authorized"
+    	},
+    	"details": {}
+    }
     
 
 | _Property_   	| _Required?_ 	| _Description_ |
@@ -108,9 +98,10 @@ If more detailed data exists, that content is linked to via the `url` parameter.
 | `iotaVersion` | **Yes**			| An indicator for the version of IoTA you are using |
 | `uuid`  		| **Yes** 		| A universally unique identifier for the object.   |
 | `revision`  	| No  			| Used to indicate a unique version of the object.  |
+| `authors`     | No           | Used to indicate the author(s) of the content. |
 | `url`  		| No  			| Used to point to either the source of the current object feed, or a source which contains more details about the object.  |
 | `description`	| No 			| A human-readable summary about the object. |
-| `status`		| No			| A singular indicator of the status of the content. |
+| `status`		| No			| An array of the status(es) of the content. |
 | `images`		| No 			| An array of URLs to relevant images.|
 | `geo`			| No 			| Used to geo-reference an object. This can be an array of objects referencing GPS coordinates, addresses, polygon shapes, etc. |
 | `taxonomies`	| No 			| Used to attach taxonomical and semantic data, such as tags, genres, categories, and other taxa.|
@@ -120,12 +111,12 @@ If more detailed data exists, that content is linked to via the `url` parameter.
   
 ##### _Deprecation Notes_
 
-_`tags` is deprecated, replaced by `taxonomies`._
+_`tags` is deprecated, replaced by `taxonomies`. Please add tags as an individual taxonomy._
 
 `properties` and `html` were previously accepted outside the scope of `details` within an object, this is no longer the case. These properties should always remain within a `details` property.
 
-### Detail Properties
-Detail properties contain detailed information about an object. This is intended to be the lowest level of the tiers. 
+### Detail-Properties
+Detail-properties contain detailed information about an object. This is intended to be the lowest level of the tiers, and is optional when retrieving summary data, such as in feeds.
 
     {
         "html":         "<h1>Here be our HTML Content</h1><p>Here's the content text. The HTML and BODY tags are not assumed tobe part of this content.</p><p>Here's an image: <img src=\"http://placehold.it/250x150\"></p>",
@@ -247,8 +238,8 @@ Multiple versions of a schema can be kept within a single file. While these "ver
 	{
         "name": "ourMeatCompany/meatCut",
         "description": "Standard feed for a packaged cut of meat.",
-        "iotaVersion": "0.13.0",
-        "author": "Robert Gerald Porter",
+        "iotaVersion": "0.14.0",
+        "authors": ["Robert Gerald Porter"],
         "copyright": "2014, Weever Apps Inc",
         "url": "http://mysite.com/meat_cut_spec.json",
         "type": "schema",
